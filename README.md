@@ -1,28 +1,28 @@
-# Build your follow-up tracker with Claude Code
+# Build a portfolio pack with Claude Code
 
 **[Partner] × TenEx · Unlocking Claude Code for non-technical teams · [Date]**
 
 Keep this page open next to Claude Code. Every prompt below has a **copy button** in its top-right corner. Click it, paste into Claude Code, and press Enter.
 
-> **The scenario:** It's Monday. You're back from a week off and 300 emails behind. In the next 45 minutes you'll build an app on your own laptop that shows who's waiting on you and what you promised.
+> **The scenario:** You're on the portfolio operations team at Ridgeline Capital. Four portfolio companies have sent their monthly numbers, and every one uses a different format. In the next 45 minutes you'll build something that turns that pile into one pack and a dashboard, then run it again for next month with one command.
 
 > [!IMPORTANT]
-> **Today's rule: read-only.** Claude reads email. It never sends, deletes or moves anything.
+> **Today's rule:** Claude never changes the companies' original files. It fixes problems in the pipeline, not in the source.
 
 > [!TIP]
-> **Fallen behind?** Paste this, using the checkpoint the group is on, and Claude will catch you up:
+> **Fallen behind?** Paste this, using the checkpoint the group is about to start, and Claude will catch you up:
 > ```
-> catch me up to checkpoint 3
+> catch me up to checkpoint 4
 > ```
 
 ## Contents
 
 - [Before you start](#before-you-start)
 - [1. Get the project](#1-get-the-project) · 5 min
-- [2. Customize CLAUDE.md](#2-customize-claudemd) · 7 min
-- [3. Find your follow-ups](#3-find-your-follow-ups) · 10 min
-- [4. Build the dashboard](#4-build-the-dashboard) · 12 min
-- [5. Make it yours](#5-make-it-yours) · 6 min
+- [2. Customize CLAUDE.md](#2-customize-claudemd) · 6 min
+- [3. Find what's messy](#3-find-whats-messy) · 8 min
+- [4. Build the pipeline](#4-build-the-pipeline) · 12 min
+- [5. Build the dashboard](#5-build-the-dashboard) · 10 min
 - [6. Make it repeatable](#6-make-it-repeatable) · 8 min
 - [Finished early?](#finished-early)
 - [After the session](#after-the-session)
@@ -38,7 +38,7 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 3. **Run the readiness check** if you haven't yet. It's on the [event page]([pre-page link]). It checks your laptop and asks before installing anything.
 4. **Set up your screen:** Claude Code on one side, this page on the other, and the webinar window small. A second monitor helps.
 
-**Email is optional.** Everyone works from the same sample inbox, from a fictional portfolio company. In checkpoint 3 you can switch to your own email if your company allows the Gmail or Outlook connector.
+Nothing to connect: all the data you need is in this project.
 
 ---
 
@@ -46,13 +46,13 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 
 `5 min` · **Uses:** Claude running commands for you
 
-*Monday morning. You're back from a week off and 300 emails behind.*
+*Month-end. The portfolio companies' files are in, and the partners want the pack.*
 
 ```
 clone https://github.com/radhikajoshii/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
 ```
 
-✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`) are directly in your workshop folder, and Claude has explained what's in it.
+✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`, `incoming/`) are directly in your workshop folder, and Claude has explained what's in it.
 
 💡 **Notice:** Claude ran Git for you. You didn't need to know the command.
 
@@ -70,14 +70,14 @@ I downloaded the workshop project into this folder. Tell me in plain English wha
 
 ## 2. Customize CLAUDE.md
 
-`7 min` · **Uses:** CLAUDE.md, the project's memory
+`6 min` · **Uses:** CLAUDE.md, the project's memory
 
-*Your predecessor left notes for Claude. Read them, then add yours.*
+*Your team already wrote down how it defines each KPI. Read it, then add yourself.*
 
-Replace `[your role]` with your actual role, for example "VP of Finance".
+Replace `[your role]` with your actual role, for example "VP of Finance at a portfolio company".
 
 ```
-read CLAUDE.md and tell me the three rules that matter most. Then add a section about me: I'm a [your role] at a PE-backed company.
+read CLAUDE.md and explain our KPI definitions in two sentences. Then add a section about me: I'm a [your role].
 ```
 
 ✅ **Done looks like:** `CLAUDE.md` has a new section about you. Open it and read it.
@@ -85,102 +85,83 @@ read CLAUDE.md and tell me the three rules that matter most. Then add a section 
 🧪 **Try it:** start a new session in the same folder and ask:
 
 ```
-what are the rules here?
+how do we calculate EBITDA here?
 ```
 
 Claude already knows, because it reads CLAUDE.md at the start of every session.
 
 ---
 
-## 3. Find your follow-ups
+## 3. Find what's messy
 
-`10 min` · **Uses:** MCP connectors
+`8 min` · **Uses:** Claude reading your files
 
-*Who's waiting on you, and what did you promise? Let Claude find out.*
+*Before you combine anything, find out what you're dealing with.*
 
 ```
-read the sample inbox in data/sample-inbox.json. Find questions I asked that got no reply, and things I promised to do. Save them to data/followups.json.
+look at every file in data/raw and the budget. Before we combine anything, tell me what's inconsistent: formats, units, missing months, and anything that looks wrong. Don't change any files.
 ```
 
-✅ **Done looks like:** `data/followups.json` lists the open items.
+✅ **Done looks like:** a plain-English list of problems. There are at least five planted in these files. How many did Claude find?
 
 <details>
-<summary>Now try your own inbox (optional)</summary>
+<summary>Spoiler: what's planted</summary>
 
-Only if your company allows the Gmail or Outlook connector in Claude.
-
-```
-now do the same with my real email from the last 14 days. Save the results to data/followups.json. Don't send anything.
-```
+- Every company uses a different layout and different names for the same KPIs.
+- Copperline reports in thousands of dollars.
+- Harbor & Pine's November file has two EBITDA figures.
+- Tidewater's October total row doesn't match its segments.
+- Tidewater's November file is missing.
+- Bluefield's November headcount is 1,520, ten times October's.
 </details>
 
 ---
 
-## 4. Build the dashboard
+## 4. Build the pipeline
 
 `12 min` · **Uses:** plan mode
 
-*Turn that list into something you can check every morning.*
+*Turn the pile into one clean, checked table.*
 
 **First, switch to plan mode**, so you approve the plan before anything changes. Then paste:
 
 ```
-plan a simple local web app that shows data/followups.json as two lists: waiting on others, and my promises.
+plan a script that combines everything in data/raw into one clean table using the KPI definitions in CLAUDE.md, compares it to the budget, flags anything off budget or that looks wrong, and saves the results in output/.
 ```
 
 Read the plan. If it looks right, paste:
 
 ```
-looks good. build it and start it.
+looks good. build it, run it, and check the totals against the source files.
 ```
 
-✅ **Done looks like:** the tracker is open in your browser at a `localhost` address.
+✅ **Done looks like:** an `output/` folder with the combined results, and Claude tells you what it checked and what it flagged.
 
 💡 **Why plan first:** you approve the plan before any file changes. Fixing a plan is cheap; fixing a finished build isn't.
 
-<details>
-<summary>The app isn't showing in my browser</summary>
+---
+
+## 5. Build the dashboard
+
+`10 min` · **Uses:** Claude building and running an app
+
+*The partners don't read CSV files. Give them something to look at.*
 
 ```
-the app isn't showing in my browser. find out why and fix it.
+build a simple local website that shows the results in output/: a portfolio overview for the latest month and a page for each company. Show anything off budget in red. Then start it.
+```
+
+✅ **Done looks like:** the dashboard is open in your browser at a `localhost` address.
+
+<details>
+<summary>The dashboard isn't showing in my browser</summary>
+
+```
+the dashboard isn't showing in my browser. find out why and fix it.
 ```
 </details>
 
----
-
-## 5. Make it yours
-
-`6 min` · **Uses:** context
-
-*It works. Now make it work the way you do.*
-
-```
-add a "mark done" button and sort each list by oldest first
-```
-
-Or ask for your own change:
-
-```
-group the follow-ups by person
-```
-
-```
-highlight anything older than a week
-```
-
-✅ **Done looks like:** your change shows up in the browser.
-
-🧪 **Try it:** type these one at a time.
-
-```
-/context
-```
-
-```
-/compact
-```
-
-`/context` shows how full the session is. `/compact` summarizes it so you can keep going.
+🧪 **Try it:** type `/context` to see how much of the session's memory you've used. `/compact` summarizes it so you can keep going.
 
 ---
 
@@ -188,21 +169,21 @@ highlight anything older than a week
 
 `8 min` · **Uses:** skills
 
-*You'll want this again tomorrow. Save the steps once.*
+*Next month you'll do this again. Save the steps once.*
 
 ```
-turn what we did in checkpoint 3 into a skill called refresh-followups, so I can run it any time
+turn what we did in checkpoint 4 into a skill called monthly-pack. It should move new files from incoming/ into data/raw/, run the pipeline, check the totals, and summarize what changed.
 ```
 
-Then run it:
+Then December arrives:
 
 ```
-/refresh-followups
+December's files just arrived in incoming/. Run /monthly-pack.
 ```
 
-✅ **Done looks like:** one command updates the dashboard.
+✅ **Done looks like:** refresh the dashboard and it shows December. Tidewater's late November file is filled in too.
 
-💡 **Why a skill:** the web app can't read email by itself. Claude reads the inbox and saves the results, and the app shows them. Running the skill is what keeps the dashboard current.
+💡 **Why this matters:** the next pack is one command, and it runs the same way every month. That's the difference between asking an AI and building something your team can rely on.
 
 ---
 
@@ -210,22 +191,28 @@ Then run it:
 
 Try one of these while everyone catches up.
 
-**Schedule it:**
+**Write the partner memo:**
 
 ```
-run /refresh-followups every weekday morning at 8am
+write a one-page memo for the partners on December's results: the headline, the three things that need attention, and the open questions for each company. Save it in output/.
 ```
 
-**Add your calendar** (if your company allows the calendar connector):
+**Get a second opinion** (uses a subagent):
 
 ```
-connect my calendar and show when I next meet each person on the list
+use a subagent to independently check every December number in output/ against the source files, and tell me anything that doesn't match.
 ```
 
-**Draft replies** (drafts only; nothing is sent):
+**Add a chart:**
 
 ```
-draft replies to my three oldest follow-ups and show them in the app. Don't send anything.
+add a chart to the overview showing each company's EBITDA margin by month
+```
+
+**Protect the source files** (uses a hook):
+
+```
+add a hook so that Claude can never edit or delete anything in data/raw/
 ```
 
 ---
@@ -233,21 +220,21 @@ draft replies to my three oldest follow-ups and show them in the app. Don't send
 ## After the session
 
 ```
-explain how I'd share this project and the refresh-followups skill with a teammate
+explain how I'd share this project and the monthly-pack skill with a teammate
 ```
 
 ```
-what's one other weekly task of mine that would work as a skill like this one?
+what's one report I put together every month that would work like this?
 ```
 
 **Your first 30 days:**
 
 | Week | Do this |
 |---|---|
-| 1 | Pick one workflow you do every week, with inputs you already have |
-| 2 | Write a CLAUDE.md for it and turn the steps into a skill |
+| 1 | Pick one report you build every month from files you already get |
+| 2 | Write a CLAUDE.md with your definitions and turn the steps into a skill |
 | 3 | Hand it to a teammate. Fix whatever confuses them |
-| 4 | Measure time saved, then pick the next workflow |
+| 4 | Measure time saved, then pick the next report |
 
 ---
 
@@ -269,12 +256,12 @@ what's one other weekly task of mine that would work as a skill like this one?
 
 | Problem | What to do |
 |---|---|
-| I'm behind the group | Paste `catch me up to checkpoint N`, using the group's current checkpoint |
+| I'm behind the group | Paste `catch me up to checkpoint N`, using the checkpoint the group is about to start |
 | Claude is asking permission to do something | Read what it wants to do. If it makes sense, allow it. If not, say no and tell it what you want instead |
 | Claude went off in the wrong direction | Press Stop (or Esc) and tell it what you meant |
+| A number looks off | Paste: `check [company]'s [month] [KPI] against the source file and explain the difference` |
 | Something errored | Paste: `that didn't work. explain what went wrong in plain English and fix it` |
 | The session feels slow or confused | Type `/compact`, or `/clear` and start the step again |
-| No email connector | Not a problem. Everything works with the sample inbox |
 
 Still stuck? Post in the chat. TenEx helpers are watching it.
 
@@ -285,10 +272,12 @@ Still stuck? Post in the chat. TenEx helpers are watching it.
 | File | What it is |
 |---|---|
 | `README.md` | This guide |
-| `CLAUDE.md` | Notes for Claude: the fictional company, the read-only rule, and how to catch you up |
-| `data/sample-inbox.json` | Jordan Avery's inbox at Harbor & Pine Supply Co., a fictional company owned by a fictional PE firm. All names and companies are made up |
-| `checkpoints/` | Reference copies of the project at the start of each checkpoint, used by "catch me up". You don't need to open these |
+| `CLAUDE.md` | Notes for Claude: the scenario, the KPI definitions, the rules, and how to catch you up |
+| `data/raw/` | October and November files from four fictional portfolio companies, each in its own format |
+| `data/budget-2026.csv` | The monthly budget for each company |
+| `incoming/` | Files that arrive later: Tidewater's late November file and everyone's December numbers |
+| `checkpoints/` | Reference copies of the project at each checkpoint, used by "catch me up". You don't need to open these |
 
-You'll create the app itself (`server.js`, `public/`, `data/followups.json`) and the skill during the workshop.
+You'll create the pipeline, the dashboard and the skill during the workshop. All companies, people and numbers are fictional.
 
 **Questions after today?** [TenEx contact email] · [website]

@@ -1,9 +1,10 @@
 {
-  "name": "follow-up-tracker",
+  "name": "portfolio-pack",
   "version": "1.0.0",
   "private": true,
-  "description": "Shows who's waiting on you and what you promised, from data/followups.json.",
+  "description": "Turns portfolio companies' monthly exports into one pack and a local dashboard.",
   "scripts": {
+    "pack": "node scripts/build-pack.js",
     "start": "node server.js"
   }
 }

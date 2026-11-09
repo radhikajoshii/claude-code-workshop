@@ -3,105 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Follow-up tracker</title>
+<title>Portfolio pack</title>
 <style>
-  :root { --bg: #f7f5f0; --card: #fdfcf9; --ink: #16202e; --muted: #4a5568; --line: #ddd7cb; --accent: #9e4220; }
+  :root { --bg: #f7f5f0; --card: #fdfcf9; --ink: #16202e; --muted: #4a5568; --line: #ddd7cb; --bad: #a33a1a; --good: #2f6b4f; --bar: #16202e; --budget: #c9c1b2; }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px; }
-  h1 { margin: 0 0 4px; font-size: 28px; }
-  .sub { margin: 0 0 24px; color: var(--muted); }
-  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-  h2 { font-size: 18px; margin: 0 0 12px; }
-  .count { color: var(--accent); }
-  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-  li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
-  li.done { opacity: 0.5; }
-  li.done .what { text-decoration: line-through; }
-  .body { flex: 1; }
-  .who { font-weight: 600; }
-  .what { margin: 4px 0; }
-  .meta { color: var(--muted); font-size: 14px; }
-  button { font: inherit; font-size: 14px; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 4px 10px; cursor: pointer; white-space: nowrap; }
-  button:hover { border-color: var(--accent); color: var(--accent); }
-  .error { color: var(--accent); }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { margin: 0; font-size: 28px; }
+  h2 { font-size: 20px; margin: 32px 0 12px; }
+  .sub { margin: 4px 0 24px; color: var(--muted); }
+  a { color: inherit; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .bad { color: var(--bad); font-weight: 600; }
+  .good { color: var(--good); }
+  .flags { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .flags li { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--bad); border-radius: 8px; padding: 10px 12px; }
+  .flags b { margin-right: 6px; }
+  .back { display: inline-block; margin-bottom: 16px; }
+  .legend { color: var(--muted); font-size: 14px; margin-top: 8px; }
+  .legend span { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin: 0 4px -1px 12px; }
 </style>
 </head>
 <body>
-<main>
-  <h1>Follow-up tracker</h1>
-  <p class="sub" id="sub">Loading…</p>
-  <div class="cols">
-    <section>
-      <h2>Waiting on others <span class="count" id="waiting-count"></span></h2>
-      <ul id="waiting"></ul>
-    </section>
-    <section>
-      <h2>My promises <span class="count" id="promises-count"></span></h2>
-      <ul id="promises"></ul>
-    </section>
-  </div>
-</main>
+<main id="app">Loading…</main>
 <script>
-  // "Mark done" is remembered in this browser only. Nothing is sent anywhere.
-  const KEY = "followups-done";
-  function loadDone() {
-    try { return new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch { return new Set(); }
-  }
-  function saveDone(done) {
-    try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch {}
+  const $ = (n) => "$" + Math.round(n).toLocaleString("en-US");
+  const $m = (n) => "$" + (n / 1e6).toFixed(2) + "M";
+  const pct = (x) => (x * 100).toFixed(1) + "%";
+  const vs = (x) => x === null || x === undefined ? "–" : (x > 0 ? "+" : "") + (x * 100).toFixed(1) + "%";
+  const LIMIT = 0.05;
+  const cls = (x) => x === null || x === undefined ? "" : Math.abs(x) > LIMIT ? "bad" : "good";
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const monthName = (m) => new Date(m + "-01T12:00:00").toLocaleString("en-US", { month: "long", year: "numeric" });
+
+  function overview(pack) {
+    const m = pack.latest_month;
+    const rows = pack.companies.map((c) => {
+      const r = c.months[m];
+      if (!r) return `<tr><td><a href="#${c.id}">${esc(c.name)}</a></td><td colspan="7" class="bad">No ${monthName(m)} numbers yet</td></tr>`;
+      return `<tr><td><a href="#${c.id}">${esc(c.name)}</a></td><td>${$m(r.revenue)}</td><td class="${cls(r.revenue_vs_budget)}">${vs(r.revenue_vs_budget)}</td>
+        <td>${$m(r.ebitda)}</td><td class="${cls(r.ebitda_vs_budget)}">${vs(r.ebitda_vs_budget)}</td><td>${pct(r.ebitda_margin)}</td>
+        <td>${$m(r.cash)}</td><td>${r.headcount}</td></tr>`;
+    }).join("");
+    const have = pack.companies.map((c) => c.months[m]).filter(Boolean);
+    const total = (k) => have.reduce((a, r) => a + r[k], 0);
+    const flags = pack.flags.filter((f) => f.month === m);
+    return `
+      <h1>Portfolio pack</h1>
+      <p class="sub">${monthName(m)} · ${have.length} of ${pack.companies.length} companies reported · built ${new Date(pack.generated_at).toLocaleString()}</p>
+      <div class="card"><table>
+        <tr><th>Company</th><th>Revenue</th><th>vs budget</th><th>EBITDA</th><th>vs budget</th><th>EBITDA margin</th><th>Cash</th><th>Headcount</th></tr>
+        ${rows}
+        <tr><td><b>Portfolio</b></td><td><b>${$m(total("revenue"))}</b></td><td></td><td><b>${$m(total("ebitda"))}</b></td><td></td>
+          <td><b>${total("revenue") ? pct(total("ebitda") / total("revenue")) : "–"}</b></td><td><b>${$m(total("cash"))}</b></td><td><b>${total("headcount")}</b></td></tr>
+      </table></div>
+      <p class="legend">Red means more than ${LIMIT * 100}% off budget. Click a company for its months.</p>
+      <h2>Flags for ${monthName(m)} (${flags.length})</h2>
+      ${flagList(pack, flags)}`;
   }
 
-  let data = null;
-  const done = loadDone();
+  function flagList(pack, flags) {
+    if (!flags.length) return `<p class="sub">Nothing flagged.</p>`;
+    const name = (id) => pack.companies.find((c) => c.id === id)?.name || id;
+    return `<ul class="flags">${flags.map((f) => `<li><b>${esc(name(f.company))}</b>${esc(f.message)}</li>`).join("")}</ul>`;
+  }
 
-  function item(id, title, text, meta) {
-    const li = document.createElement("li");
-    if (done.has(id)) li.classList.add("done");
-    const body = document.createElement("div");
-    body.className = "body";
-    for (const [cls, value] of [["who", title], ["what", text], ["meta", meta]]) {
-      const div = document.createElement("div");
-      div.className = cls;
-      div.textContent = value;
-      body.appendChild(div);
+  function chart(c, months) {
+    const vals = months.map((m) => c.months[m]);
+    const max = Math.max(...vals.flatMap((r) => (r ? [r.revenue, r.revenue_budget || 0] : [0]))) * 1.1 || 1;
+    const w = 640, h = 200, gap = w / months.length, bw = Math.min(56, gap / 3);
+    const bars = months.map((m, i) => {
+      const r = c.months[m], x = gap * i + gap / 2;
+      const y = (v) => h - (v / max) * h;
+      const label = `<text x="${x}" y="${h + 18}" text-anchor="middle" font-size="13" fill="#4a5568">${m}</text>`;
+      if (!r) return label + `<text x="${x}" y="${h - 8}" text-anchor="middle" font-size="12" fill="#a33a1a">missing</text>`;
+      return label +
+        `<rect x="${x - bw - 2}" y="${y(r.revenue_budget || 0)}" width="${bw}" height="${h - y(r.revenue_budget || 0)}" fill="#c9c1b2"><title>Budget ${$(r.revenue_budget || 0)}</title></rect>` +
+        `<rect x="${x + 2}" y="${y(r.revenue)}" width="${bw}" height="${h - y(r.revenue)}" fill="#16202e"><title>Actual ${$(r.revenue)}</title></rect>`;
+    }).join("");
+    return `<svg viewBox="0 0 ${w} ${h + 28}" width="100%" role="img" aria-label="Revenue vs budget by month">${bars}</svg>
+      <p class="legend">Revenue by month: <span style="background:var(--budget)"></span>budget <span style="background:var(--bar)"></span>actual</p>`;
+  }
+
+  function company(pack, c) {
+    const rows = pack.months.map((m) => {
+      const r = c.months[m];
+      if (!r) return `<tr><td>${m}</td><td colspan="8" class="bad">Missing</td></tr>`;
+      return `<tr><td>${m}</td><td>${$(r.revenue)}</td><td class="${cls(r.revenue_vs_budget)}">${vs(r.revenue_vs_budget)}</td><td>${pct(r.gross_margin)}</td>
+        <td>${$(r.ebitda)}</td><td class="${cls(r.ebitda_vs_budget)}">${vs(r.ebitda_vs_budget)}</td><td>${pct(r.ebitda_margin)}</td><td>${$(r.cash)}</td><td>${r.headcount}</td></tr>`;
+    }).join("");
+    return `
+      <a class="back" href="#">← Portfolio</a>
+      <h1>${esc(c.name)}</h1>
+      <p class="sub">${pack.months.length} months</p>
+      <div class="card">${chart(c, pack.months)}</div>
+      <h2>By month</h2>
+      <div class="card"><table>
+        <tr><th>Month</th><th>Revenue</th><th>vs budget</th><th>Gross margin</th><th>EBITDA</th><th>vs budget</th><th>EBITDA margin</th><th>Cash</th><th>Headcount</th></tr>
+        ${rows}
+      </table></div>
+      <h2>Flags</h2>
+      ${flagList(pack, pack.flags.filter((f) => f.company === c.id))}`;
+  }
+
+  async function render() {
+    const app = document.getElementById("app");
+    try {
+      const pack = await (await fetch("/output/pack.json")).json();
+      const c = pack.companies.find((x) => "#" + x.id === location.hash);
+      app.innerHTML = c ? company(pack, c) : overview(pack);
+    } catch {
+      app.innerHTML = `<h1>Portfolio pack</h1><p class="bad">Couldn't load output/pack.json. Run the pipeline first: <code>npm run pack</code></p>`;
     }
-    const button = document.createElement("button");
-    button.textContent = done.has(id) ? "Undo" : "Mark done";
-    button.onclick = () => {
-      done.has(id) ? done.delete(id) : done.add(id);
-      saveDone(done);
-      render();
-    };
-    li.append(body, button);
-    return li;
   }
-
-  function fill(listId, countId, items, toItem, dateOf) {
-    const list = document.getElementById(listId);
-    list.replaceChildren();
-    const sorted = [...items].sort((a, b) => dateOf(a).localeCompare(dateOf(b))); // oldest first
-    const open = sorted.filter((x) => !done.has(x.id)).length;
-    document.getElementById(countId).textContent = `(${open} open)`;
-    for (const x of sorted) list.appendChild(toItem(x));
-  }
-
-  function render() {
-    document.getElementById("sub").textContent = `As of ${data.today}`;
-    fill("waiting", "waiting-count", data.waiting_on_others || [],
-      (w) => item(w.id, w.person, w.asked, `Asked ${w.asked_on} · ${w.days_waiting} days waiting${w.note ? " · " + w.note : ""}`),
-      (w) => w.asked_on);
-    fill("promises", "promises-count", data.my_promises || [],
-      (p) => item(p.id, p.to, p.promise, `Due ${p.due} · ${p.status}${p.note ? " · " + p.note : ""}`),
-      (p) => p.made_on);
-  }
-
-  fetch("/data/followups.json")
-    .then((r) => r.json())
-    .then((json) => { data = json; render(); })
-    .catch(() => {
-      document.getElementById("sub").innerHTML = '<span class="error">Couldn\'t load data/followups.json. Run checkpoint 3 first.</span>';
-    });
+  window.addEventListener("hashchange", render);
+  render();
 </script>
 </body>
 </html>
