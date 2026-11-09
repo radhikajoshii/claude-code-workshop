@@ -39,6 +39,7 @@ Use these whenever you read, combine or show the numbers.
 - **Keep it simple.** Use Node.js with no packages if you can, and no database. Write results to `output/`.
 - **Ask before installing anything** and say what it's for.
 - **Don't use the files in `checkpoints/`** unless the user asks to catch up (see below). They are reference copies for people who fall behind.
+- **Ignore `site/` and `vercel.json`.** They build the workshop guide as a web page and aren't part of the exercise.
 
 ## Catching up
 

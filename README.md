@@ -55,7 +55,7 @@ clone https://github.com/radhikajoshii/claude-code-workshop directly into this f
 <details>
 <summary>The clone failed</summary>
 
-This is usually your company's network. Click the green **Code** button at the top of this page, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
+This is usually your company's network. Open [the project on GitHub](https://github.com/radhikajoshii/claude-code-workshop), click the green **Code** button, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
 
 ```
 I downloaded the workshop project into this folder. Tell me in plain English what's inside.
@@ -288,6 +288,7 @@ Still stuck? Post in the chat. TenEx helpers are watching it.
 | `new-portfolio/` | Files, a budget and a company list for three more fictional companies, used in step 7 |
 | `reviews/` | Created by your dashboard: the flags you've marked reviewed, with your notes |
 | `checkpoints/` | Reference copies of the project at each checkpoint, used by "catch me up". You don't need to open these |
+| `site/`, `vercel.json` | Build this guide as a web page. You don't need to open these |
 
 You'll create the pipeline, the dashboard, the hook and the skill during the workshop. All companies, people and numbers are fictional.
 
