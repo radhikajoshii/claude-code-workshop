@@ -1,6 +1,6 @@
 # Build a portfolio pack with Claude Code
 
-**OneGuide × TenEx · Unlocking Claude Code for non-technical teams · [Date]**
+**OneGuide × TenEx · Unlocking Claude Code for non-technical teams**
 
 Keep this page open next to Claude Code. Every prompt below has a **copy button** in its top-right corner. Click it, paste into Claude Code, and press Enter.
 
