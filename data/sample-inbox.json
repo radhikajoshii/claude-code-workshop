@@ -1,0 +1,264 @@
+{
+  "about": "A fictional inbox for a Claude Code workshop. Harbor & Pine Supply Co., Ridgeline Capital, Brightline Freight, Coastal Foods and every person here are made up.",
+  "owner": {
+    "name": "Jordan Avery",
+    "title": "Chief of Staff, Harbor & Pine Supply Co.",
+    "email": "jordan.avery@harborpine.example"
+  },
+  "today": "2026-12-07",
+  "out_of_office": { "from": "2026-11-30", "to": "2026-12-04" },
+  "messages": [
+    {
+      "id": "m01",
+      "thread_id": "t-brightline-rates",
+      "date": "2026-11-20T10:12:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Dana Whitfield", "email": "dana.whitfield@brightlinefreight.example" }],
+      "subject": "Revised rate card for 2027",
+      "body": "Hi Dana,\n\nThanks for the call yesterday. Can you confirm the revised 2027 rate card, including the fuel surcharge cap we discussed, in writing? Our ops team needs it before they lock the Q1 freight budget.\n\nBest,\nJordan"
+    },
+    {
+      "id": "m02",
+      "thread_id": "t-brightline-rates",
+      "date": "2026-11-23T16:40:00-05:00",
+      "from": { "name": "Dana Whitfield", "email": "dana.whitfield@brightlinefreight.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "RE: Revised rate card for 2027",
+      "body": "Hi Jordan,\n\nGot it. I'm waiting on sign-off from our pricing team and will confirm next week.\n\nDana"
+    },
+    {
+      "id": "m03",
+      "thread_id": "t-lender-notes",
+      "date": "2026-11-23T09:05:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Priya Nair", "email": "priya.nair@harborpine.example" }],
+      "subject": "Lender call this morning",
+      "body": "Priya,\n\nI'll send you my notes from the lender call this afternoon so you have them before your covenant review.\n\nJordan"
+    },
+    {
+      "id": "m04",
+      "thread_id": "t-lender-notes",
+      "date": "2026-11-23T15:22:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Priya Nair", "email": "priya.nair@harborpine.example" }],
+      "subject": "RE: Lender call this morning",
+      "body": "Priya,\n\nNotes from the lender call are below.\n\n- They're comfortable with the Q4 leverage trajectory.\n- They want the 13-week cash forecast monthly through Q1.\n- Next check-in is mid-January.\n\nJordan"
+    },
+    {
+      "id": "m05",
+      "thread_id": "t-lender-notes",
+      "date": "2026-11-23T15:48:00-05:00",
+      "from": { "name": "Priya Nair", "email": "priya.nair@harborpine.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "RE: Lender call this morning",
+      "body": "Perfect, thank you.\n\nPriya"
+    },
+    {
+      "id": "m06",
+      "thread_id": "t-claude-approval",
+      "date": "2026-11-23T11:30:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Sam Okafor", "email": "sam.okafor@harborpine.example" }],
+      "subject": "Claude Code for the finance team",
+      "body": "Hi Sam,\n\nCan we get Claude Code approved for the finance team before the January close? Priya's team wants to try it on the month-end reconciliations. Happy to fill in whatever security review form you need.\n\nThanks,\nJordan"
+    },
+    {
+      "id": "m07",
+      "thread_id": "t-cash-forecast",
+      "date": "2026-11-24T08:45:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Priya Nair", "email": "priya.nair@harborpine.example" }],
+      "subject": "November cash forecast",
+      "body": "Priya,\n\nCould you send me the November cash forecast before board prep on December 10? I want to pull the headline numbers into the pre-read.\n\nThanks,\nJordan"
+    },
+    {
+      "id": "m08",
+      "thread_id": "t-org-chart",
+      "date": "2026-11-24T13:10:00-05:00",
+      "from": { "name": "Elena Ruiz", "email": "elena.ruiz@ridgelinecap.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "Org chart for the board",
+      "body": "Jordan,\n\nThe board will want to see the new operations leadership structure. Can you send me an updated org chart?\n\nElena\nOperating Partner, Ridgeline Capital"
+    },
+    {
+      "id": "m09",
+      "thread_id": "t-org-chart",
+      "date": "2026-11-24T14:02:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Elena Ruiz", "email": "elena.ruiz@ridgelinecap.example" }],
+      "subject": "RE: Org chart for the board",
+      "body": "Elena,\n\nOf course. I'll send you the revised org chart by Friday, December 4, once Kim confirms the two open roles.\n\nJordan"
+    },
+    {
+      "id": "m10",
+      "thread_id": "t-coastal-renewal",
+      "date": "2026-11-25T09:20:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Marcus Lee", "email": "marcus.lee@harborpine.example" }],
+      "subject": "Coastal Foods renewal",
+      "body": "Marcus,\n\nWhat's the status of the Coastal Foods renewal? Are we still at risk of losing them after the October delivery issues?\n\nAlso, I'll set up a pricing review with you and Priya when I'm back from leave, so we have a view before the renewal call.\n\nJordan"
+    },
+    {
+      "id": "m11",
+      "thread_id": "t-coastal-escalation",
+      "date": "2026-11-25T11:05:00-05:00",
+      "from": { "name": "Angela Brooks", "email": "angela.brooks@coastalfoods.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "October delivery credits",
+      "body": "Jordan,\n\nWe had eleven late deliveries in October and two spoiled loads. Before we talk about renewing, we need to understand what Harbor & Pine is prepared to offer.\n\nAngela Brooks\nCOO, Coastal Foods"
+    },
+    {
+      "id": "m12",
+      "thread_id": "t-coastal-escalation",
+      "date": "2026-11-25T12:30:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Angela Brooks", "email": "angela.brooks@coastalfoods.example" }],
+      "subject": "RE: October delivery credits",
+      "body": "Angela,\n\nThat's a fair ask, and I'm sorry for the disruption. I'll get back to you with a credit proposal next week.\n\nJordan"
+    },
+    {
+      "id": "m13",
+      "thread_id": "t-board-format",
+      "date": "2026-11-25T15:15:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Elena Ruiz", "email": "elena.ruiz@ridgelinecap.example" }],
+      "subject": "100-day plan update",
+      "body": "Elena,\n\nDo you want the 100-day plan update inside the board deck, or as a separate memo?\n\nJordan"
+    },
+    {
+      "id": "m14",
+      "thread_id": "t-board-format",
+      "date": "2026-11-26T08:50:00-05:00",
+      "from": { "name": "Elena Ruiz", "email": "elena.ruiz@ridgelinecap.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "RE: 100-day plan update",
+      "body": "Separate memo, please. Two pages max.\n\nElena"
+    },
+    {
+      "id": "m15",
+      "thread_id": "t-warehouse-coverage",
+      "date": "2026-11-26T10:40:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Kim Tran", "email": "kim.tran@harborpine.example" }],
+      "subject": "Warehouse manager coverage",
+      "body": "Hi Kim,\n\nWho's covering the Savannah warehouse manager role while Luis is on leave? Ops asked me and I didn't have an answer.\n\nThanks,\nJordan"
+    },
+    {
+      "id": "m16",
+      "thread_id": "t-board-preread",
+      "date": "2026-11-26T14:00:00-05:00",
+      "from": { "name": "Rachel Gomez", "email": "rachel.gomez@ridgelinecap.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "December board meeting logistics",
+      "body": "Hi Jordan,\n\nThe December board meeting is confirmed for December 15. When can we expect the pre-read?\n\nRachel Gomez\nBoard Coordinator, Ridgeline Capital"
+    },
+    {
+      "id": "m17",
+      "thread_id": "t-board-preread",
+      "date": "2026-11-26T14:35:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Rachel Gomez", "email": "rachel.gomez@ridgelinecap.example" }],
+      "subject": "RE: December board meeting logistics",
+      "body": "Hi Rachel,\n\nI'll circulate the board pre-read by Wednesday, December 9.\n\nJordan"
+    },
+    {
+      "id": "m18",
+      "thread_id": "t-drive-access",
+      "date": "2026-11-27T09:15:00-05:00",
+      "from": { "name": "Tom Becker", "email": "tom.becker@harborpine.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "Shared drive access",
+      "body": "Hi Jordan,\n\nI don't have access to the strategy shared drive yet. Could you add me?\n\nTom"
+    },
+    {
+      "id": "m19",
+      "thread_id": "t-drive-access",
+      "date": "2026-11-27T09:40:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Tom Becker", "email": "tom.becker@harborpine.example" }],
+      "subject": "RE: Shared drive access",
+      "body": "Tom, sorry about that. I'll get you access before I leave today.\n\nJordan"
+    },
+    {
+      "id": "m20",
+      "thread_id": "t-ooo",
+      "date": "2026-11-27T17:30:00-05:00",
+      "from": { "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" },
+      "to": [{ "name": "Harbor & Pine Leadership", "email": "leadership@harborpine.example" }],
+      "subject": "Out next week",
+      "body": "Hi all,\n\nI'm out from November 30 to December 4 and back on Monday, December 7. Priya is the point person for anything urgent.\n\nJordan"
+    },
+    {
+      "id": "m21",
+      "thread_id": "t-ops-weekly",
+      "date": "2026-11-30T07:00:00-05:00",
+      "from": { "name": "Ops Reporting", "email": "ops-reports@harborpine.example" },
+      "to": [{ "name": "Harbor & Pine Leadership", "email": "leadership@harborpine.example" }],
+      "subject": "Weekly operations snapshot: week of Nov 23",
+      "body": "This is an automated report.\n\nOn-time delivery: 93.8% (target 96%)\nOrder fill rate: 97.1%\nOpen customer escalations: 4\n\nFull dashboard: internal link"
+    },
+    {
+      "id": "m22",
+      "thread_id": "t-portfolio-digest",
+      "date": "2026-12-01T06:30:00-05:00",
+      "from": { "name": "Ridgeline Portfolio Digest", "email": "digest@ridgelinecap.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "Ridgeline Portfolio Digest: December",
+      "body": "This month: year-end planning checklist, a recap of the CFO roundtable, and new AI tools across the portfolio.\n\nYou're receiving this because you work at a Ridgeline portfolio company. Unsubscribe anytime."
+    },
+    {
+      "id": "m23",
+      "thread_id": "t-drive-access",
+      "date": "2026-12-01T10:05:00-05:00",
+      "from": { "name": "Tom Becker", "email": "tom.becker@harborpine.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "RE: Shared drive access",
+      "body": "Hi Jordan, just following up. I still can't open the strategy drive. No rush while you're out.\n\nTom"
+    },
+    {
+      "id": "m24",
+      "thread_id": "t-territory-plan",
+      "date": "2026-12-02T16:20:00-05:00",
+      "from": { "name": "Marcus Lee", "email": "marcus.lee@harborpine.example" },
+      "to": [{ "name": "Harbor & Pine Leadership", "email": "leadership@harborpine.example" }],
+      "subject": "Q1 territory plan draft",
+      "body": "Team,\n\nThe draft Q1 territory plan is in the sales folder. Comments by December 11, please.\n\nMarcus"
+    },
+    {
+      "id": "m25",
+      "thread_id": "t-all-hands",
+      "date": "2026-12-03T09:00:00-05:00",
+      "from": { "name": "Harbor & Pine People Team", "email": "people@harborpine.example" },
+      "to": [{ "name": "All Staff", "email": "all@harborpine.example" }],
+      "subject": "Reminder: December all-hands on the 17th",
+      "body": "Our December all-hands is on Thursday, December 17 at 10am in the Savannah warehouse break room and online. Submit questions for the leadership Q&A using the form on the intranet."
+    },
+    {
+      "id": "m26",
+      "thread_id": "t-audit-timeline",
+      "date": "2026-12-03T14:45:00-05:00",
+      "from": { "name": "Priya Nair", "email": "priya.nair@harborpine.example" },
+      "to": [{ "name": "Harbor & Pine Leadership", "email": "leadership@harborpine.example" }],
+      "subject": "FYI: audit timeline",
+      "body": "FYI, the auditors will start fieldwork on January 18. I'll share the request list once it's final.\n\nPriya"
+    },
+    {
+      "id": "m27",
+      "thread_id": "t-calendar",
+      "date": "2026-12-04T08:00:00-05:00",
+      "from": { "name": "Calendar", "email": "calendar-noreply@harborpine.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "Invitation: Board prep @ Thu Dec 10, 2pm",
+      "body": "Priya Nair has invited you to Board prep on Thursday, December 10 at 2:00pm."
+    },
+    {
+      "id": "m28",
+      "thread_id": "t-safety-question",
+      "date": "2026-12-04T11:25:00-05:00",
+      "from": { "name": "Luis Ortega", "email": "luis.ortega@harborpine.example" },
+      "to": [{ "name": "Jordan Avery", "email": "jordan.avery@harborpine.example" }],
+      "subject": "Forklift recertification budget",
+      "body": "Hi Jordan,\n\nBefore I go on leave: can you confirm whether the forklift recertification training is in the 2027 budget? The vendor needs an answer by December 18.\n\nLuis"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-12-07T08:00:00-05:00",
+  "source": "data/sample-inbox.json",
+  "today": "2026-12-07",
+  "waiting_on_others": [
+    {
+      "id": "w1",
+      "person": "Dana Whitfield",
+      "email": "dana.whitfield@brightlinefreight.example",
+      "subject": "Revised rate card for 2027",
+      "asked": "Confirm the revised 2027 rate card, including the fuel surcharge cap, in writing.",
+      "asked_on": "2026-11-20",
+      "days_waiting": 17,
+      "note": "Dana said she would confirm the week of Nov 30, but hasn't.",
+      "thread_id": "t-brightline-rates"
+    },
+    {
+      "id": "w2",
+      "person": "Sam Okafor",
+      "email": "sam.okafor@harborpine.example",
+      "subject": "Claude Code for the finance team",
+      "asked": "Can Claude Code be approved for the finance team before the January close?",
+      "asked_on": "2026-11-23",
+      "days_waiting": 14,
+      "note": "",
+      "thread_id": "t-claude-approval"
+    },
+    {
+      "id": "w3",
+      "person": "Priya Nair",
+      "email": "priya.nair@harborpine.example",
+      "subject": "November cash forecast",
+      "asked": "Send the November cash forecast before board prep on December 10.",
+      "asked_on": "2026-11-24",
+      "days_waiting": 13,
+      "note": "Needed for board prep on Dec 10.",
+      "thread_id": "t-cash-forecast"
+    },
+    {
+      "id": "w4",
+      "person": "Marcus Lee",
+      "email": "marcus.lee@harborpine.example",
+      "subject": "Coastal Foods renewal",
+      "asked": "What's the status of the Coastal Foods renewal, and are we still at risk of losing them?",
+      "asked_on": "2026-11-25",
+      "days_waiting": 12,
+      "note": "Marcus emailed the team on Dec 2 but didn't answer this.",
+      "thread_id": "t-coastal-renewal"
+    },
+    {
+      "id": "w5",
+      "person": "Kim Tran",
+      "email": "kim.tran@harborpine.example",
+      "subject": "Warehouse manager coverage",
+      "asked": "Who's covering the Savannah warehouse manager role while Luis is on leave?",
+      "asked_on": "2026-11-26",
+      "days_waiting": 11,
+      "note": "",
+      "thread_id": "t-warehouse-coverage"
+    }
+  ],
+  "my_promises": [
+    {
+      "id": "p1",
+      "to": "Angela Brooks",
+      "email": "angela.brooks@coastalfoods.example",
+      "subject": "October delivery credits",
+      "promise": "Get back to Angela with a credit proposal.",
+      "made_on": "2026-11-25",
+      "due": "2026-12-04",
+      "status": "overdue",
+      "note": "Coastal Foods wants this before talking about the renewal.",
+      "thread_id": "t-coastal-escalation"
+    },
+    {
+      "id": "p2",
+      "to": "Elena Ruiz",
+      "email": "elena.ruiz@ridgelinecap.example",
+      "subject": "Org chart for the board",
+      "promise": "Send Elena the revised org chart.",
+      "made_on": "2026-11-24",
+      "due": "2026-12-04",
+      "status": "overdue",
+      "note": "Waiting on Kim to confirm two open roles.",
+      "thread_id": "t-org-chart"
+    },
+    {
+      "id": "p3",
+      "to": "Tom Becker",
+      "email": "tom.becker@harborpine.example",
+      "subject": "Shared drive access",
+      "promise": "Give Tom access to the strategy shared drive.",
+      "made_on": "2026-11-27",
+      "due": "2026-11-27",
+      "status": "overdue",
+      "note": "Tom followed up on Dec 1. He still has no access.",
+      "thread_id": "t-drive-access"
+    },
+    {
+      "id": "p4",
+      "to": "Marcus Lee and Priya Nair",
+      "email": "marcus.lee@harborpine.example",
+      "subject": "Coastal Foods renewal",
+      "promise": "Set up a pricing review with Marcus and Priya.",
+      "made_on": "2026-11-25",
+      "due": "2026-12-11",
+      "status": "due this week",
+      "note": "Promised for when Jordan is back from leave, before the renewal call.",
+      "thread_id": "t-coastal-renewal"
+    },
+    {
+      "id": "p5",
+      "to": "Rachel Gomez",
+      "email": "rachel.gomez@ridgelinecap.example",
+      "subject": "December board meeting logistics",
+      "promise": "Circulate the board pre-read.",
+      "made_on": "2026-11-26",
+      "due": "2026-12-09",
+      "status": "due this week",
+      "note": "Board meeting is Dec 15.",
+      "thread_id": "t-board-preread"
+    }
+  ]
+}
