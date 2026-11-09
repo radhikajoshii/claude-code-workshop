@@ -49,7 +49,7 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 *Monday morning. You're back from a week off and 300 emails behind.*
 
 ```
-clone [WORKSHOP_REPO_URL] directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
+clone https://github.com/radhikajoshii/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
 ```
 
 ✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`) are directly in your workshop folder, and Claude has explained what's in it.
