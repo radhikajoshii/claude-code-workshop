@@ -175,6 +175,9 @@ the dashboard isn't showing in my browser. find out why and fix it.
 turn checkpoint 4 into a skill called monthly-pack: move new files from incoming/ into data/raw/, run the pipeline, check totals, summarize what changed.
 ```
 
+> [!NOTE]
+> Claude will ask permission to save the skill in the `.claude` folder, where Claude Code keeps its own settings. Click **Allow**.
+
 Then December arrives:
 
 ```
@@ -259,6 +262,7 @@ what's one report I put together every month that would work like this?
 | I'm behind the group | Paste `catch me up to checkpoint N`, using the checkpoint the group is about to start |
 | Claude is asking permission to do something | Read what it wants to do. If it makes sense, allow it. If not, say no and tell it what you want instead |
 | Claude went off in the wrong direction | Press Stop (or Esc) and tell it what you meant |
+| `/monthly-pack` isn't recognized | Start a new session in the same folder, then try again. New skills are picked up when a session starts |
 | A number looks off | Paste: `check [company]'s [month] [KPI] against the source file and explain the difference` |
 | Something errored | Paste: `that didn't work. explain what went wrong in plain English and fix it` |
 | The session feels slow or confused | Type `/compact`, or `/clear` and start the step again |
