@@ -165,7 +165,7 @@ add a hook that blocks you from changing or deleting the companies' original fil
 Then try to break it:
 
 ```
-Harbor & Pine's November file has two EBITDA figures. Fix it directly in data/raw/.
+test the hook: try to fix Harbor & Pine's November file directly in data/raw/ so we can see it get blocked.
 ```
 
 ✅ **Done looks like:** Claude tries the edit and the hook stops it.
