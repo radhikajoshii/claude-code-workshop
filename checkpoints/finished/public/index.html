@@ -23,16 +23,25 @@
   .flags { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   .flags li { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--bad); border-radius: 8px; padding: 10px 12px; }
   .flags b { margin-right: 6px; }
+  .flags li.done { border-left-color: var(--good); color: var(--muted); }
+  .review { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; align-items: center; }
+  .review input { flex: 1; min-width: 220px; font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .review button { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; }
+  .review button.undo { background: transparent; color: var(--ink); }
+  .review .saved { font-size: 13px; color: var(--good); }
   .back { display: inline-block; margin-bottom: 16px; }
   .legend { color: var(--muted); font-size: 14px; margin-top: 8px; }
+  .switch { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .switch a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; font-size: 14px; background: var(--card); }
+  .switch a.on { background: var(--ink); color: #fff; border-color: var(--ink); }
   .legend span { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin: 0 4px -1px 12px; }
 </style>
 </head>
 <body>
 <main id="app">Loading…</main>
 <script>
-  const $ = (n) => "$" + Math.round(n).toLocaleString("en-US");
-  const $m = (n) => "$" + (n / 1e6).toFixed(2) + "M";
+  const $ = (n) => (n < 0 ? "-$" : "$") + Math.abs(Math.round(n)).toLocaleString("en-US");
+  const $m = (n) => (n < 0 ? "-$" : "$") + (Math.abs(n) / 1e6).toFixed(2) + "M";
   const pct = (x) => (x * 100).toFixed(1) + "%";
   const vs = (x) => x === null || x === undefined ? "–" : (x > 0 ? "+" : "") + (x * 100).toFixed(1) + "%";
   const LIMIT = 0.05;
@@ -52,6 +61,7 @@
     const have = pack.companies.map((c) => c.months[m]).filter(Boolean);
     const total = (k) => have.reduce((a, r) => a + r[k], 0);
     const flags = pack.flags.filter((f) => f.month === m);
+    const reviewed = flags.filter((f) => notes[flagKey(pack, f)]?.reviewed).length;
     return `
       <h1>Portfolio pack</h1>
       <p class="sub">${monthName(m)} · ${have.length} of ${pack.companies.length} companies reported · built ${new Date(pack.generated_at).toLocaleString()}</p>
@@ -62,15 +72,45 @@
           <td><b>${total("revenue") ? pct(total("ebitda") / total("revenue")) : "–"}</b></td><td><b>${$m(total("cash"))}</b></td><td><b>${total("headcount")}</b></td></tr>
       </table></div>
       <p class="legend">Red means more than ${LIMIT * 100}% off budget. Click a company for its months.</p>
-      <h2>Flags for ${monthName(m)} (${flags.length})</h2>
+      <h2>Flags for ${monthName(m)} (${flags.length}${reviewed ? `, ${reviewed} reviewed` : ""})</h2>
       ${flagList(pack, flags)}`;
   }
+
+  // Flag reviews are saved by the server to reviews/notes.json, keyed by portfolio, company, month and message,
+  // so a reviewed flag stays reviewed when the pipeline reruns and produces the same flag again.
+  let notes = {};
+  const flagKey = (pack, f) => [pack.portfolio || "data", f.company, f.month, f.message].join("|");
 
   function flagList(pack, flags) {
     if (!flags.length) return `<p class="sub">Nothing flagged.</p>`;
     const name = (id) => pack.companies.find((c) => c.id === id)?.name || id;
-    return `<ul class="flags">${flags.map((f) => `<li><b>${esc(name(f.company))}</b>${esc(f.message)}</li>`).join("")}</ul>`;
+    return `<ul class="flags">${flags.map((f) => {
+      const key = flagKey(pack, f), n = notes[key] || {};
+      return `<li class="${n.reviewed ? "done" : ""}"><b>${esc(name(f.company))}</b>${esc(f.message)}
+        <div class="review" data-key="${esc(key)}">
+          <input placeholder="Add a note, e.g. who you spoke to" value="${esc(n.note || "")}">
+          <button class="${n.reviewed ? "undo" : ""}" data-reviewed="${n.reviewed ? "" : "1"}">${n.reviewed ? "Reopen" : "Mark reviewed"}</button>
+          ${n.updated_at ? `<span class="saved">Saved ${new Date(n.updated_at).toLocaleString()}</span>` : ""}
+        </div></li>`;
+    }).join("")}</ul>`;
   }
+
+  // Clicking "Mark reviewed" or "Reopen" saves the flag's status and note, then redraws the page.
+  document.addEventListener("click", async (e) => {
+    const button = e.target.closest(".review button");
+    if (!button) return;
+    const box = button.closest(".review");
+    button.disabled = true;
+    const res = await fetch("/api/notes", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: box.dataset.key, reviewed: Boolean(button.dataset.reviewed), note: box.querySelector("input").value }),
+    });
+    if (res.ok) { notes = await res.json(); render(); }
+    else {
+      button.disabled = false;
+      box.insertAdjacentHTML("beforeend", `<span class="bad">Couldn't save. Is the dashboard server still running?</span>`);
+    }
+  });
 
   function chart(c, months) {
     const vals = months.map((m) => c.months[m]);
@@ -110,12 +150,24 @@
       ${flagList(pack, pack.flags.filter((f) => f.company === c.id))}`;
   }
 
+  // Every pack the pipeline has built is listed in output/portfolios.json. Pick one with ?p=<id>.
+  async function portfolios() {
+    try { return await (await fetch("/output/portfolios.json")).json(); }
+    catch { return [{ id: "data", label: "Portfolio", path: "output/pack.json" }]; }
+  }
+
   async function render() {
     const app = document.getElementById("app");
     try {
-      const pack = await (await fetch("/output/pack.json")).json();
+      const list = await portfolios();
+      const wanted = new URLSearchParams(location.search).get("p");
+      const current = list.find((p) => p.id === wanted) || list[0];
+      const pack = await (await fetch("/" + current.path)).json();
+      try { notes = await (await fetch("/api/notes")).json(); } catch { notes = {}; }
+      const tabs = list.length > 1 ? `<nav class="switch">${list.map((p) =>
+        `<a href="?p=${encodeURIComponent(p.id)}" class="${p.id === current.id ? "on" : ""}">${esc(p.label)}</a>`).join("")}</nav>` : "";
       const c = pack.companies.find((x) => "#" + x.id === location.hash);
-      app.innerHTML = c ? company(pack, c) : overview(pack);
+      app.innerHTML = tabs + (c ? company(pack, c) : overview(pack));
     } catch {
       app.innerHTML = `<h1>Portfolio pack</h1><p class="bad">Couldn't load output/pack.json. Run the pipeline first: <code>npm run pack</code></p>`;
     }

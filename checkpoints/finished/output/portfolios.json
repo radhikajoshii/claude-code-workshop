@@ -1,0 +1,12 @@
+[
+  {
+    "id": "data",
+    "label": "Ridgeline Capital",
+    "path": "output/pack.json"
+  },
+  {
+    "id": "new-portfolio",
+    "label": "New portfolio",
+    "path": "output/new-portfolio/pack.json"
+  }
+]

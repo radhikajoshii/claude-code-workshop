@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-09T02:45:27.078Z",
+  "portfolio": "data",
+  "generated_at": "2026-11-09T19:42:33.277Z",
   "months": [
     "2026-10",
-    "2026-11",
-    "2026-12"
+    "2026-11"
   ],
-  "latest_month": "2026-12",
+  "latest_month": "2026-11",
   "companies": [
     {
       "id": "harbor-pine",
@@ -38,20 +38,6 @@
           "revenue_vs_budget": -0.09534883720930233,
           "ebitda_vs_budget": -0.259047619047619,
           "source_file": "data/raw/2026-11/HarborPine_Nov26_KPIs.csv"
-        },
-        "2026-12": {
-          "revenue": 4050000,
-          "gross_profit": 1113750,
-          "ebitda": 352000,
-          "cash": 2540000,
-          "headcount": 213,
-          "gross_margin": 0.275,
-          "ebitda_margin": 0.08691358024691358,
-          "revenue_budget": 4400000,
-          "ebitda_budget": 440000,
-          "revenue_vs_budget": -0.07954545454545454,
-          "ebitda_vs_budget": -0.2,
-          "source_file": "data/raw/2026-12/HarborPine_Dec26_KPIs.csv"
         }
       }
     },
@@ -86,20 +72,6 @@
           "revenue_vs_budget": 0.021604938271604937,
           "ebitda_vs_budget": 0.09428571428571429,
           "source_file": "data/raw/2026-11/bluefield-2026-11.csv"
-        },
-        "2026-12": {
-          "revenue": 1702000,
-          "gross_profit": 1331000,
-          "ebitda": 280800,
-          "cash": 6640000,
-          "headcount": 153,
-          "gross_margin": 0.782021151586369,
-          "ebitda_margin": 0.16498237367802585,
-          "revenue_budget": 1640000,
-          "ebitda_budget": 250000,
-          "revenue_vs_budget": 0.03780487804878049,
-          "ebitda_vs_budget": 0.1232,
-          "source_file": "data/raw/2026-12/bluefield-2026-12.csv"
         }
       }
     },
@@ -134,20 +106,6 @@
           "revenue_vs_budget": 0.030344827586206897,
           "ebitda_vs_budget": 0.05121951219512195,
           "source_file": "data/raw/2026-11/Copperline Monthly Report - Nov 2026.csv"
-        },
-        "2026-12": {
-          "revenue": 2840000,
-          "gross_profit": 1164000,
-          "ebitda": 395000,
-          "cash": 2010000,
-          "headcount": 240,
-          "gross_margin": 0.4098591549295775,
-          "ebitda_margin": 0.13908450704225353,
-          "revenue_budget": 2950000,
-          "ebitda_budget": 420000,
-          "revenue_vs_budget": -0.03728813559322034,
-          "ebitda_vs_budget": -0.05952380952380952,
-          "source_file": "data/raw/2026-12/Copperline Monthly Report - Dec 2026.csv"
         }
       }
     },
@@ -169,34 +127,7 @@
           "ebitda_vs_budget": -0.025,
           "source_file": "data/raw/2026-10/Tidewater_Oct.csv"
         },
-        "2026-11": {
-          "revenue": 3390000,
-          "gross_profit": 793000,
-          "ebitda": 352000,
-          "cash": 2060000,
-          "headcount": 185,
-          "gross_margin": 0.23392330383480825,
-          "ebitda_margin": 0.10383480825958702,
-          "revenue_budget": 3520000,
-          "ebitda_budget": 405000,
-          "revenue_vs_budget": -0.036931818181818184,
-          "ebitda_vs_budget": -0.1308641975308642,
-          "source_file": "data/raw/2026-11/Tidewater_Nov.csv"
-        },
-        "2026-12": {
-          "revenue": 3580000,
-          "gross_profit": 866000,
-          "ebitda": 412000,
-          "cash": 2230000,
-          "headcount": 186,
-          "gross_margin": 0.24189944134078212,
-          "ebitda_margin": 0.11508379888268157,
-          "revenue_budget": 3550000,
-          "ebitda_budget": 410000,
-          "revenue_vs_budget": 0.008450704225352112,
-          "ebitda_vs_budget": 0.004878048780487805,
-          "source_file": "data/raw/2026-12/Tidewater_Dec.csv"
-        }
+        "2026-11": null
       }
     }
   ],
@@ -226,18 +157,6 @@
       "message": "EBITDA -25.9% vs budget."
     },
     {
-      "company": "harbor-pine",
-      "month": "2026-12",
-      "type": "off budget",
-      "message": "Revenue -8.0% vs budget."
-    },
-    {
-      "company": "harbor-pine",
-      "month": "2026-12",
-      "type": "off budget",
-      "message": "EBITDA -20.0% vs budget."
-    },
-    {
       "company": "bluefield",
       "month": "2026-11",
       "type": "off budget",
@@ -250,22 +169,10 @@
       "message": "Headcount jumped from 148 to 1520. Probably a typo; check with the company."
     },
     {
-      "company": "bluefield",
-      "month": "2026-12",
-      "type": "off budget",
-      "message": "EBITDA +12.3% vs budget."
-    },
-    {
       "company": "copperline",
       "month": "2026-11",
       "type": "off budget",
       "message": "EBITDA +5.1% vs budget."
-    },
-    {
-      "company": "copperline",
-      "month": "2026-12",
-      "type": "off budget",
-      "message": "EBITDA -6.0% vs budget."
     },
     {
       "company": "tidewater",
@@ -276,8 +183,8 @@
     {
       "company": "tidewater",
       "month": "2026-11",
-      "type": "off budget",
-      "message": "EBITDA -13.1% vs budget."
+      "type": "missing file",
+      "message": "No 2026-11 file from Tidewater Packaging."
     }
   ]
 }

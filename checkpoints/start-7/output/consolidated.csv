@@ -1,0 +1,8 @@
+company,month,revenue,gross_profit,gross_margin,ebitda,ebitda_margin,cash,headcount,revenue_vs_budget,ebitda_vs_budget,source_file
+"Harbor & Pine Supply Co.",2026-10,4180000,1170400,0.2800,376200,0.0900,2850000,212,-0.0165,-0.0595,"data/raw/2026-10/HarborPine_Oct26_KPIs.csv"
+"Harbor & Pine Supply Co.",2026-11,3890000,1050300,0.2700,311200,0.0800,2610000,214,-0.0953,-0.2590,"data/raw/2026-11/HarborPine_Nov26_KPIs.csv"
+"Bluefield Software",2026-10,1612000,1257360,0.7800,241800,0.1500,6420000,148,0.0075,0.0075,"data/raw/2026-10/bluefield-2026-10.csv"
+"Bluefield Software",2026-11,1655000,1290900,0.7800,268100,0.1620,6515000,1520,0.0216,0.0943,"data/raw/2026-11/bluefield-2026-11.csv"
+"Copperline Dental Partners",2026-10,2905000,1191000,0.4100,407000,0.1401,1880000,236,0.0193,0.0175,"data/raw/2026-10/Copperline Monthly Report - Oct 2026.csv"
+"Copperline Dental Partners",2026-11,2988000,1225000,0.4100,431000,0.1442,1960000,239,0.0303,0.0512,"data/raw/2026-11/Copperline Monthly Report - Nov 2026.csv"
+"Tidewater Packaging",2026-10,3450000,820300,0.2378,390000,0.1130,2100000,184,-0.0143,-0.0250,"data/raw/2026-10/Tidewater_Oct.csv"

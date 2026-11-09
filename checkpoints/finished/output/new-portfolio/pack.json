@@ -1,0 +1,151 @@
+{
+  "portfolio": "new-portfolio",
+  "generated_at": "2026-11-09T19:42:33.316Z",
+  "months": [
+    "2026-10",
+    "2026-11"
+  ],
+  "latest_month": "2026-11",
+  "companies": [
+    {
+      "id": "alder-ridge",
+      "name": "Alder Ridge Veterinary Group",
+      "months": {
+        "2026-10": {
+          "revenue": 2240000,
+          "gross_profit": 1030000,
+          "ebitda": 268000,
+          "cash": 1410000,
+          "headcount": 198,
+          "gross_margin": 0.45982142857142855,
+          "ebitda_margin": 0.11964285714285715,
+          "revenue_budget": 2200000,
+          "ebitda_budget": 260000,
+          "revenue_vs_budget": 0.01818181818181818,
+          "ebitda_vs_budget": 0.03076923076923077,
+          "source_file": "new-portfolio/raw/2026-10/Alder Ridge Vet - KPI pack Oct 2026.csv"
+        },
+        "2026-11": {
+          "revenue": 2105000,
+          "gross_profit": 912000,
+          "ebitda": -36000,
+          "cash": 1295000,
+          "headcount": 201,
+          "gross_margin": 0.4332541567695962,
+          "ebitda_margin": -0.0171021377672209,
+          "revenue_budget": 2250000,
+          "ebitda_budget": 270000,
+          "revenue_vs_budget": -0.06444444444444444,
+          "ebitda_vs_budget": -1.1333333333333333,
+          "source_file": "new-portfolio/raw/2026-11/Alder Ridge Vet - KPI pack Nov 2026.csv"
+        }
+      }
+    },
+    {
+      "id": "northgate",
+      "name": "Northgate Logistics",
+      "months": {
+        "2026-10": {
+          "revenue": 4935000,
+          "gross_profit": 1025000,
+          "ebitda": 402000,
+          "cash": 3300000,
+          "headcount": 341,
+          "gross_margin": 0.2077001013171226,
+          "ebitda_margin": 0.08145896656534954,
+          "revenue_budget": 4900000,
+          "ebitda_budget": 400000,
+          "revenue_vs_budget": 0.007142857142857143,
+          "ebitda_vs_budget": 0.005,
+          "source_file": "new-portfolio/raw/2026-10/northgate_monthly_2026-10.csv"
+        },
+        "2026-11": {
+          "revenue": 4650000,
+          "gross_profit": 950000,
+          "ebitda": 371000,
+          "cash": 3180000,
+          "headcount": 338,
+          "gross_margin": 0.20430107526881722,
+          "ebitda_margin": 0.07978494623655914,
+          "revenue_budget": 5000000,
+          "ebitda_budget": 410000,
+          "revenue_vs_budget": -0.07,
+          "ebitda_vs_budget": -0.0951219512195122,
+          "source_file": "new-portfolio/raw/2026-11/northgate_monthly_2026-11.csv"
+        }
+      }
+    },
+    {
+      "id": "summit-fitness",
+      "name": "Summit Fitness Clubs",
+      "months": {
+        "2026-10": {
+          "revenue": 1860000,
+          "gross_profit": 1302000,
+          "ebitda": 298000,
+          "cash": 2450000,
+          "headcount": 402,
+          "gross_margin": 0.7,
+          "ebitda_margin": 0.16021505376344086,
+          "revenue_budget": 1850000,
+          "ebitda_budget": 300000,
+          "revenue_vs_budget": 0.005405405405405406,
+          "ebitda_vs_budget": -0.006666666666666667,
+          "source_file": "new-portfolio/raw/2026-10/SummitFitness_Oct.csv"
+        },
+        "2026-11": {
+          "revenue": 1905000,
+          "gross_profit": 1333500,
+          "ebitda": 311000,
+          "cash": 2520000,
+          "headcount": 405,
+          "gross_margin": 0.7,
+          "ebitda_margin": 0.16325459317585303,
+          "revenue_budget": 1880000,
+          "ebitda_budget": 305000,
+          "revenue_vs_budget": 0.013297872340425532,
+          "ebitda_vs_budget": 0.019672131147540985,
+          "source_file": "new-portfolio/raw/2026-11/SummitFitness_Nov.csv"
+        }
+      }
+    }
+  ],
+  "flags": [
+    {
+      "company": "alder-ridge",
+      "month": "2026-11",
+      "type": "off budget",
+      "message": "Revenue -6.4% vs budget."
+    },
+    {
+      "company": "alder-ridge",
+      "month": "2026-11",
+      "type": "off budget",
+      "message": "EBITDA -113.3% vs budget."
+    },
+    {
+      "company": "northgate",
+      "month": "2026-11",
+      "type": "duplicate line",
+      "message": "\"Adjusted EBITDA\" appears twice with the same amount. Counted it once."
+    },
+    {
+      "company": "northgate",
+      "month": "2026-11",
+      "type": "off budget",
+      "message": "Revenue -7.0% vs budget."
+    },
+    {
+      "company": "northgate",
+      "month": "2026-11",
+      "type": "off budget",
+      "message": "EBITDA -9.5% vs budget."
+    },
+    {
+      "company": "summit-fitness",
+      "month": "2026-11",
+      "type": "wrong period in file",
+      "message": "The file in the 2026-11 folder says its period is 2026-10. Treated it as 2026-11; check with the company."
+    }
+  ]
+}

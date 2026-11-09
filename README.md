@@ -1,10 +1,10 @@
 # Build a portfolio pack with Claude Code
 
-**[Partner] × TenEx · Unlocking Claude Code for non-technical teams · [Date]**
+**OneGuide × TenEx · Unlocking Claude Code for non-technical teams**
 
 Keep this page open next to Claude Code. Every prompt below has a **copy button** in its top-right corner. Click it, paste into Claude Code, and press Enter.
 
-> **The scenario:** You're on the portfolio operations team at Ridgeline Capital. Four portfolio companies have sent their monthly numbers, and every one uses a different format. In the next 45 minutes you'll build something that turns that pile into one pack and a dashboard, then run it again for next month with one command.
+> **The scenario:** You're on the portfolio operations team at Ridgeline Capital. Four portfolio companies have sent their monthly numbers, and every one uses a different format. In the next hour you'll build a pipeline and a dashboard step by step, turn the whole process into one command, then run that command on companies Claude has never seen.
 
 > [!IMPORTANT]
 > **Today's rule:** Claude never changes the companies' original files. It fixes problems in the pipeline, not in the source.
@@ -12,19 +12,20 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 > [!TIP]
 > **Fallen behind?** Paste this, using the checkpoint the group is about to start, and Claude will catch you up:
 > ```
-> catch me up to checkpoint 4
+> catch me up to checkpoint 3
 > ```
 
 ## Contents
 
 - [Before you start](#before-you-start)
-- [1. Get the project](#1-get-the-project) · 5 min
-- [2. Customize CLAUDE.md](#2-customize-claudemd) · 6 min
-- [3. Find what's messy](#3-find-whats-messy) · 8 min
-- [4. Build the pipeline](#4-build-the-pipeline) · 12 min
-- [5. Build the dashboard](#5-build-the-dashboard) · 10 min
-- [6. Make it repeatable](#6-make-it-repeatable) · 8 min
-- [Finished early?](#finished-early)
+- [0. Run the readiness check](#0-run-the-readiness-check) · before the session
+- [1. Get the project](#1-get-the-project) · 7 min
+- [2. Find what's messy](#2-find-whats-messy) · 8 min
+- [3. Build the pipeline](#3-build-the-pipeline) · 14 min
+- [4. Build the dashboard](#4-build-the-dashboard) · 12 min
+- [5. Protect the source](#5-protect-the-source) · 4 min
+- [6. Turn it into a skill](#6-turn-it-into-a-skill) · 8 min
+- [7. One command, new companies](#7-one-command-new-companies) · 5 min
 - [After the session](#after-the-session)
 - [Commands worth knowing](#commands-worth-knowing)
 - [If something goes wrong](#if-something-goes-wrong)
@@ -35,64 +36,106 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 
 1. **Open Claude Code.** Open the Claude desktop app and go to the **Code** tab. You need a Pro, Max, Team or Enterprise plan.
 2. **Open an empty folder.** For example, a new folder called `claude-workshop` on your Desktop.
-3. **Run the readiness check** if you haven't yet. It's on the [event page]([pre-page link]). It checks your laptop and asks before installing anything.
-4. **Set up your screen:** Claude Code on one side, this page on the other, and the webinar window small. A second monitor helps.
+3. **Run the readiness check** in step 0 below, if you haven't yet.
+4. **Set up your screen:** Claude Code on one side, this page on the other, and the webinar window small.
 
 Nothing to connect: all the data you need is in this project.
 
 ---
 
+## 0. Run the readiness check
+
+**Do this before the session**, ideally a few days early, so there's time to ask IT if something is blocked.
+
+*Make sure your laptop can do everything the workshop needs.*
+
+Paste this into Claude Code in your workshop folder. Claude checks your laptop and installs anything missing, and it asks you before it changes anything.
+
+```
+I'm joining a hands-on Claude Code workshop and I'm not an engineer. Please check that my computer is ready, fix what's missing, and explain each step in plain language as you go.
+
+Rules:
+- Ask me before installing or changing anything. Tell me what it is and why.
+- Prefer installs that don't need an administrator password. If one does, tell me; I'll type the password myself.
+- If my company laptop blocks an install, don't try to get around it. Mark it red and tell me what to ask IT for.
+
+Please check these, in order:
+
+1. My computer: which operating system and version I'm on.
+
+2. Git: is it installed? If not, install it.
+   - Mac: run `xcode-select --install` (a system window will pop up; I'll click Install).
+   - Windows: use `winget install --id Git.Git -e`.
+
+3. Node.js and npm: is Node version 20.19 or newer (or 22.12 or newer) installed?
+   If it's missing or too old, install the current LTS version.
+   - Mac: use the official installer from nodejs.org, or Homebrew if I already have it.
+   - Windows: use `winget install --id OpenJS.NodeJS.LTS -e`.
+   After installing, open a fresh shell and confirm `node --version` and `npm --version` work.
+
+4. Internet access for the tools:
+   - Run `npm view vite version` to check that npm can download packages.
+   - Run `git ls-remote https://github.com/radhikajoshii/claude-code-workshop` to check that I can reach the workshop project.
+   If either fails, tell me it's probably a company network or proxy setting.
+
+5. A local web app can run: create a temporary folder, start a tiny Node web server on port 3000, confirm it responds, then stop it and delete the folder.
+
+When you're done, show me a table with one row per check:
+| Check | Status (✅ / ⚠️ / ❌) | What it means | What to do (if anything) |
+
+Then finish with one line: "You're ready for the workshop," or "You're mostly ready. Here's the one thing to fix," or "Bring this table to the workshop; you can still follow along."
+```
+
+✅ **Done looks like:** a table of green checks and "You're ready for the workshop."
+
+<details>
+<summary>Something stayed red</summary>
+
+Come anyway: you can still follow along on screen. The usual fixes:
+
+| What you see | What to do |
+|---|---|
+| An install needs an administrator password you don't have | Ask IT to install Git and Node.js (LTS) |
+| `winget` isn't found (Windows) | Install Git from git-scm.com and Node.js from nodejs.org, or ask IT |
+| The npm or GitHub check times out | It's usually your company network. Ask IT for the proxy settings, or use a personal network on the day |
+| There's no Code tab | You need a Pro, Max, Team or Enterprise plan, or your admin needs to turn Claude Code on |
+</details>
+
+---
+
 ## 1. Get the project
 
-`5 min` · **Uses:** Claude running commands for you
+`7 min` · **Uses:** Claude running commands for you, CLAUDE.md
 
-*Month-end. The portfolio companies' files are in, and the partners want the pack.*
+*Month-end. The companies' files are in, and the partners want the pack.*
 
 ```
 clone https://github.com/radhikajoshii/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
 ```
 
-✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`, `incoming/`) are directly in your workshop folder, and Claude has explained what's in it.
-
-💡 **Notice:** Claude ran Git for you. You didn't need to know the command.
-
 <details>
 <summary>The clone failed</summary>
 
-This is usually your company's network. Click the green **Code** button at the top of this page, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
+This is usually your company's network. Open [the project on GitHub](https://github.com/radhikajoshii/claude-code-workshop), click the green **Code** button, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
 
 ```
 I downloaded the workshop project into this folder. Tell me in plain English what's inside.
 ```
 </details>
 
----
-
-## 2. Customize CLAUDE.md
-
-`6 min` · **Uses:** CLAUDE.md, the project's memory
-
-*Your team already wrote down how it defines each KPI. Read it, then add yourself.*
-
-Replace `[your role]` with your actual role, for example "VP of Finance at a portfolio company".
+**Then meet CLAUDE.md.** Your team already wrote down how it defines each KPI. Replace `[your role]` with your actual role, for example "VP of Finance at a portfolio company", before you press Enter.
 
 ```
 read CLAUDE.md and explain our KPI definitions in two sentences. Then add a section about me: I'm a [your role].
 ```
 
-✅ **Done looks like:** `CLAUDE.md` has a new section about you. Open it and read it.
+✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`, `new-portfolio/`) are directly in your workshop folder, and `CLAUDE.md` has a new section about you.
 
-🧪 **Try it:** start a new session in the same folder and ask:
-
-```
-how do we calculate EBITDA here?
-```
-
-Claude already knows, because it reads CLAUDE.md at the start of every session.
+💡 **Why it matters:** Claude ran the commands for you. CLAUDE.md gives every session your team's rules. Try it: start a new session in the same folder and ask `how do we calculate EBITDA here?`
 
 ---
 
-## 3. Find what's messy
+## 2. Find what's messy
 
 `8 min` · **Uses:** Claude reading your files
 
@@ -102,7 +145,7 @@ Claude already knows, because it reads CLAUDE.md at the start of every session.
 look at every file in data/raw and the budget. Before we combine anything, tell me what's inconsistent: formats, units, missing months, and anything that looks wrong. Don't change any files.
 ```
 
-✅ **Done looks like:** a plain-English list of problems. There are at least five planted in these files. How many did Claude find?
+✅ **Done looks like:** a plain-English list of problems, before anything changes. There are at least five planted in these files. How many did Claude find?
 
 <details>
 <summary>Spoiler: what's planted</summary>
@@ -117,16 +160,16 @@ look at every file in data/raw and the budget. Before we combine anything, tell 
 
 ---
 
-## 4. Build the pipeline
+## 3. Build the pipeline
 
-`12 min` · **Uses:** plan mode
+`14 min` · **Uses:** plan mode, subagents
 
 *Turn the pile into one clean, checked table.*
 
 **First, switch to plan mode**, so you approve the plan before anything changes. Then paste:
 
 ```
-plan a script that combines data/raw into one clean table using our KPI definitions, compares it to the budget, flags problems, and saves results to output/.
+plan a script that combines data/raw into one clean table using our KPI definitions, compares it to the budget, flags problems and saves results to output/. Spawn one subagent per company to work out how to clean its file.
 ```
 
 Read the plan. If it looks right, paste:
@@ -137,21 +180,23 @@ looks good. build it, run it and check totals against the sources.
 
 ✅ **Done looks like:** an `output/` folder with the combined results, and Claude tells you what it checked and what it flagged.
 
-💡 **Why plan first:** you approve the plan before any file changes. Fixing a plan is cheap; fixing a finished build isn't.
+💡 **Why it matters:** about one helper per company works in parallel, each dealing with its own company's quirks. Claude decides the split, so three or five helpers is fine. And you approved the plan before anything changed: fixing a plan is cheap, fixing a finished build isn't.
 
 ---
 
-## 5. Build the dashboard
+## 4. Build the dashboard
 
-`10 min` · **Uses:** Claude building and running an app
+`12 min` · **Uses:** Claude building and running an app
 
 *The partners don't read CSV files. Give them something to look at.*
 
 ```
-build a simple local website that shows the results in output/: a portfolio overview for the latest month and a page for each company. Show anything off budget in red. Then start it.
+build a simple local website that shows the results in output/: a portfolio overview for the latest month and a page for each company. Show anything off budget in red. Let me mark each flag as reviewed and add a note, and save the notes to a file so they're still there after the pipeline reruns. Then start it.
 ```
 
-✅ **Done looks like:** the dashboard is open in your browser at a `localhost` address.
+✅ **Done looks like:** the dashboard is open in your browser at a `localhost` address, and every flag has a way to mark it reviewed.
+
+🧪 **Try it:** add a note to Bluefield's headcount flag, for example "Called Bluefield, it's 152", and mark it reviewed. Refresh the page: it's still there. Then ask Claude `show me where my note was saved` and open the file. The website wrote it to your own laptop.
 
 <details>
 <summary>The dashboard isn't showing in my browser</summary>
@@ -165,65 +210,86 @@ the dashboard isn't showing in my browser. find out why and fix it.
 
 ---
 
-## 6. Make it repeatable
+## 5. Protect the source
 
-`8 min` · **Uses:** skills
+`4 min` · **Uses:** hooks
 
-*Next month you'll do this again. Save the steps once.*
+*The pack is built. Now make "never edit the originals" a rule Claude can't skip.*
 
 ```
-turn checkpoint 4 into a skill called monthly-pack: move new files from incoming/ into data/raw/, run the pipeline, check totals, summarize what changed.
+add a hook that blocks you from changing or deleting the companies' original files in any raw/ folder. Then explain in one sentence what you set up.
 ```
 
 > [!NOTE]
-> Claude will ask permission to save the skill in the `.claude` folder, where Claude Code keeps its own settings. Click **Allow**.
+> Claude will ask permission to edit its settings in the `.claude` folder, where Claude Code keeps its own settings. Click **Allow**.
 
-Then December arrives:
+Then try to break it:
 
 ```
-December's files just arrived in incoming/. Run /monthly-pack.
+test the hook: try to fix Harbor & Pine's November file directly in data/raw/ so we can see it get blocked.
 ```
 
-✅ **Done looks like:** refresh the dashboard and it shows December. Tidewater's late November file is filled in too.
+✅ **Done looks like:** Claude tries the edit and the hook stops it.
 
-💡 **Why this matters:** the next pack is one command, and it runs the same way every month. That's the difference between asking an AI and building something your team can rely on.
+💡 **Why it matters:** CLAUDE.md asks Claude to follow a rule. A hook enforces it, every time.
 
 ---
 
-## Finished early?
+## 6. Turn it into a skill
 
-Try one of these while everyone catches up.
+`8 min` · **Uses:** skills, subagents
 
-**Write the partner memo:**
-
-```
-write a one-page memo for the partners on December's results. Save it in output/.
-```
-
-**Get a second opinion** (uses a subagent):
+*You did it once by hand. Save the whole process as one command.*
 
 ```
-use a subagent to check every December number in output/ against the source files
+turn checkpoints 2 to 4 into a skill called build-pack: given a folder of company files, find what's messy, clean and combine them with our KPI definitions, have a subagent check each company against its source, and build the dashboard.
 ```
 
-**Add a chart:**
+> [!NOTE]
+> Claude will ask permission to save the skill in the `.claude` folder. Click **Allow**. If `/build-pack` isn't recognized afterwards, start a new session in the same folder.
+
+Then test it:
 
 ```
-add a chart to the overview showing each company's EBITDA margin by month
+run /build-pack on data/ and compare the result with the dashboard you built.
 ```
 
-**Protect the source files** (uses a hook):
+✅ **Done looks like:** the same dashboard, from one command.
+
+💡 **Why it matters:** forty minutes of steps, saved as one command anyone on the team can run.
+
+---
+
+## 7. One command, new companies
+
+`5 min` · **Uses:** the skill you just built
+
+*A new fund's portfolio just landed. Different companies, different formats.*
 
 ```
-add a hook so Claude can never edit or delete anything in data/raw/
+run /build-pack on new-portfolio/ and open the dashboard it builds.
 ```
+
+✅ **Done looks like:** a new dashboard for companies Claude has never seen, in one step.
+
+💡 **Why it matters:** this is how one person's work becomes the team's process.
+
+<details>
+<summary>Spoiler: what's planted in the new portfolio</summary>
+
+- Alder Ridge reports in thousands of dollars, and its November EBITDA is a loss written in brackets: `(36)`.
+- Northgate sends gross sales and returns separately, so net revenue has to be worked out, and it has no gross profit line.
+- Northgate's November file lists Adjusted EBITDA twice.
+- Summit uses semicolons between columns and dots as thousands separators (`1.860.000`).
+- Summit's November file says its period is October.
+</details>
 
 ---
 
 ## After the session
 
 ```
-explain how I'd share this project and the monthly-pack skill with a teammate
+explain how I'd share this project and the build-pack skill with a teammate
 ```
 
 ```
@@ -262,7 +328,8 @@ what's one report I put together every month that would work like this?
 | I'm behind the group | Paste `catch me up to checkpoint N`, using the checkpoint the group is about to start |
 | Claude is asking permission to do something | Read what it wants to do. If it makes sense, allow it. If not, say no and tell it what you want instead |
 | Claude went off in the wrong direction | Press Stop (or Esc) and tell it what you meant |
-| `/monthly-pack` isn't recognized | Start a new session in the same folder, then try again. New skills are picked up when a session starts |
+| The hook didn't stop the edit | Paste: `check that the hook in .claude/settings.json runs, and fix it`. CLAUDE.md still tells Claude never to edit the originals, so you can carry on |
+| `/build-pack` isn't recognized | Start a new session in the same folder, then try again. New skills are picked up when a session starts |
 | A number looks off | Paste: `check [company]'s [month] [KPI] against the source file and explain the difference` |
 | Something errored | Paste: `that didn't work. explain what went wrong in plain English and fix it` |
 | The session feels slow or confused | Type `/compact`, or `/clear` and start the step again |
@@ -277,11 +344,13 @@ Still stuck? Post in the chat. TenEx helpers are watching it.
 |---|---|
 | `README.md` | This guide |
 | `CLAUDE.md` | Notes for Claude: the scenario, the KPI definitions, the rules, and how to catch you up |
-| `data/raw/` | October and November files from four fictional portfolio companies, each in its own format |
+| `data/raw/` | October and November files from Ridgeline's four fictional portfolio companies, each in its own format |
 | `data/budget-2026.csv` | The monthly budget for each company |
-| `incoming/` | Files that arrive later: Tidewater's late November file and everyone's December numbers |
+| `new-portfolio/` | Files, a budget and a company list for three more fictional companies, used in step 7 |
+| `reviews/` | Created by your dashboard: the flags you've marked reviewed, with your notes |
 | `checkpoints/` | Reference copies of the project at each checkpoint, used by "catch me up". You don't need to open these |
+| `site/`, `vercel.json` | Build this guide as a web page. You don't need to open these |
 
-You'll create the pipeline, the dashboard and the skill during the workshop. All companies, people and numbers are fictional.
+You'll create the pipeline, the dashboard, the hook and the skill during the workshop. All companies, people and numbers are fictional.
 
-**Questions after today?** [TenEx contact email] · [website]
+**Questions after today?** [human@tenex.co](mailto:human@tenex.co) · [www.tenex.co](https://www.tenex.co)

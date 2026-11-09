@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 *.log
 /output/
+/reviews/
+/site/dist/
+.vercel/
+.env*
