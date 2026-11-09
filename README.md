@@ -75,7 +75,7 @@ Please check these, in order:
 
 4. Internet access for the tools:
    - Run `npm view vite version` to check that npm can download packages.
-   - Run `git ls-remote https://github.com/radhikajoshii/claude-code-workshop` to check that I can reach the workshop project.
+   - Run `git ls-remote https://github.com/tenex-labs/claude-code-workshop` to check that I can reach the workshop project.
    If either fails, tell me it's probably a company network or proxy setting.
 
 5. A local web app can run: create a temporary folder, start a tiny Node web server on port 3000, confirm it responds, then stop it and delete the folder.
@@ -110,13 +110,13 @@ Come anyway: you can still follow along on screen. The usual fixes:
 *Month-end. The companies' files are in, and the partners want the pack.*
 
 ```
-clone https://github.com/radhikajoshii/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
+clone https://github.com/tenex-labs/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
 ```
 
 <details>
 <summary>The clone failed</summary>
 
-This is usually your company's network. Open [the project on GitHub](https://github.com/radhikajoshii/claude-code-workshop), click the green **Code** button, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
+This is usually your company's network. Open [the project on GitHub](https://github.com/tenex-labs/claude-code-workshop), click the green **Code** button, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
 
 ```
 I downloaded the workshop project into this folder. Tell me in plain English what's inside.

@@ -8,7 +8,7 @@ const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
 const OUT = path.join(__dirname, "dist");
-const REPO_URL = "https://github.com/radhikajoshii/claude-code-workshop";
+const REPO_URL = "https://github.com/tenex-labs/claude-code-workshop";
 const md = fs.readFileSync(path.join(ROOT, "README.md"), "utf8").replace(/\r\n/g, "\n");
 
 const warnings = [];
