@@ -126,13 +126,13 @@ look at every file in data/raw and the budget. Before we combine anything, tell 
 **First, switch to plan mode**, so you approve the plan before anything changes. Then paste:
 
 ```
-plan a script that combines everything in data/raw into one clean table using the KPI definitions in CLAUDE.md, compares it to the budget, flags anything off budget or that looks wrong, and saves the results in output/.
+plan a script that combines data/raw into one clean table using our KPI definitions, compares it to the budget, flags problems, and saves results to output/.
 ```
 
 Read the plan. If it looks right, paste:
 
 ```
-looks good. build it, run it, and check the totals against the source files.
+looks good. build it, run it and check totals against the sources.
 ```
 
 ✅ **Done looks like:** an `output/` folder with the combined results, and Claude tells you what it checked and what it flagged.
@@ -172,7 +172,7 @@ the dashboard isn't showing in my browser. find out why and fix it.
 *Next month you'll do this again. Save the steps once.*
 
 ```
-turn what we did in checkpoint 4 into a skill called monthly-pack. It should move new files from incoming/ into data/raw/, run the pipeline, check the totals, and summarize what changed.
+turn checkpoint 4 into a skill called monthly-pack: move new files from incoming/ into data/raw/, run the pipeline, check totals, summarize what changed.
 ```
 
 Then December arrives:
@@ -194,13 +194,13 @@ Try one of these while everyone catches up.
 **Write the partner memo:**
 
 ```
-write a one-page memo for the partners on December's results: the headline, the three things that need attention, and the open questions for each company. Save it in output/.
+write a one-page memo for the partners on December's results. Save it in output/.
 ```
 
 **Get a second opinion** (uses a subagent):
 
 ```
-use a subagent to independently check every December number in output/ against the source files, and tell me anything that doesn't match.
+use a subagent to check every December number in output/ against the source files
 ```
 
 **Add a chart:**
@@ -212,7 +212,7 @@ add a chart to the overview showing each company's EBITDA margin by month
 **Protect the source files** (uses a hook):
 
 ```
-add a hook so that Claude can never edit or delete anything in data/raw/
+add a hook so Claude can never edit or delete anything in data/raw/
 ```
 
 ---
