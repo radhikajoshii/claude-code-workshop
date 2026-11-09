@@ -4,7 +4,7 @@
   "private": true,
   "description": "Turns portfolio companies' monthly exports into one pack and a local dashboard.",
   "scripts": {
-    "pack": "node scripts/build-pack.js",
+    "pack": "node scripts/pipeline.js",
     "start": "node server.js"
   }
 }

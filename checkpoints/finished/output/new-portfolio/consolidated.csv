@@ -1,0 +1,7 @@
+company,month,revenue,gross_profit,gross_margin,ebitda,ebitda_margin,cash,headcount,revenue_vs_budget,ebitda_vs_budget,source_file
+"Alder Ridge Veterinary Group",2026-10,2240000,1030000,0.4598,268000,0.1196,1410000,198,0.0182,0.0308,"new-portfolio/raw/2026-10/Alder Ridge Vet - KPI pack Oct 2026.csv"
+"Alder Ridge Veterinary Group",2026-11,2105000,912000,0.4333,-36000,-0.0171,1295000,201,-0.0644,-1.1333,"new-portfolio/raw/2026-11/Alder Ridge Vet - KPI pack Nov 2026.csv"
+"Northgate Logistics",2026-10,4935000,1025000,0.2077,402000,0.0815,3300000,341,0.0071,0.0050,"new-portfolio/raw/2026-10/northgate_monthly_2026-10.csv"
+"Northgate Logistics",2026-11,4650000,950000,0.2043,371000,0.0798,3180000,338,-0.0700,-0.0951,"new-portfolio/raw/2026-11/northgate_monthly_2026-11.csv"
+"Summit Fitness Clubs",2026-10,1860000,1302000,0.7000,298000,0.1602,2450000,402,0.0054,-0.0067,"new-portfolio/raw/2026-10/SummitFitness_Oct.csv"
+"Summit Fitness Clubs",2026-11,1905000,1333500,0.7000,311000,0.1633,2520000,405,0.0133,0.0197,"new-portfolio/raw/2026-11/SummitFitness_Nov.csv"
