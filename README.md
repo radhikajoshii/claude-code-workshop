@@ -18,6 +18,7 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 ## Contents
 
 - [Before you start](#before-you-start)
+- [0. Run the readiness check](#0-run-the-readiness-check) · before the session
 - [1. Get the project](#1-get-the-project) · 7 min
 - [2. Find what's messy](#2-find-whats-messy) · 8 min
 - [3. Build the pipeline](#3-build-the-pipeline) · 14 min
@@ -35,10 +36,70 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 
 1. **Open Claude Code.** Open the Claude desktop app and go to the **Code** tab. You need a Pro, Max, Team or Enterprise plan.
 2. **Open an empty folder.** For example, a new folder called `claude-workshop` on your Desktop.
-3. **Run the readiness check** if you haven't yet. It's on the [event page]([pre-page link]). It checks your laptop and asks before installing anything.
-4. **Set up your screen:** Claude Code on one side, this page on the other, and the webinar window small. A second monitor helps.
+3. **Run the readiness check** in step 0 below, if you haven't yet.
+4. **Set up your screen:** Claude Code on one side, this page on the other, and the webinar window small.
 
 Nothing to connect: all the data you need is in this project.
+
+---
+
+## 0. Run the readiness check
+
+**Do this before the session**, ideally a few days early, so there's time to ask IT if something is blocked.
+
+*Make sure your laptop can do everything the workshop needs.*
+
+Paste this into Claude Code in your workshop folder. Claude checks your laptop and installs anything missing, and it asks you before it changes anything.
+
+```
+I'm joining a hands-on Claude Code workshop and I'm not an engineer. Please check that my computer is ready, fix what's missing, and explain each step in plain language as you go.
+
+Rules:
+- Ask me before installing or changing anything. Tell me what it is and why.
+- Prefer installs that don't need an administrator password. If one does, tell me; I'll type the password myself.
+- If my company laptop blocks an install, don't try to get around it. Mark it red and tell me what to ask IT for.
+
+Please check these, in order:
+
+1. My computer: which operating system and version I'm on.
+
+2. Git: is it installed? If not, install it.
+   - Mac: run `xcode-select --install` (a system window will pop up; I'll click Install).
+   - Windows: use `winget install --id Git.Git -e`.
+
+3. Node.js and npm: is Node version 20.19 or newer (or 22.12 or newer) installed?
+   If it's missing or too old, install the current LTS version.
+   - Mac: use the official installer from nodejs.org, or Homebrew if I already have it.
+   - Windows: use `winget install --id OpenJS.NodeJS.LTS -e`.
+   After installing, open a fresh shell and confirm `node --version` and `npm --version` work.
+
+4. Internet access for the tools:
+   - Run `npm view vite version` to check that npm can download packages.
+   - Run `git ls-remote https://github.com/radhikajoshii/claude-code-workshop` to check that I can reach the workshop project.
+   If either fails, tell me it's probably a company network or proxy setting.
+
+5. A local web app can run: create a temporary folder, start a tiny Node web server on port 3000, confirm it responds, then stop it and delete the folder.
+
+When you're done, show me a table with one row per check:
+| Check | Status (✅ / ⚠️ / ❌) | What it means | What to do (if anything) |
+
+Then finish with one line: "You're ready for the workshop," or "You're mostly ready. Here's the one thing to fix," or "Bring this table to the workshop; you can still follow along."
+```
+
+✅ **Done looks like:** a table of green checks and "You're ready for the workshop."
+
+<details>
+<summary>Something stayed red</summary>
+
+Come anyway: you can still follow along on screen. The usual fixes:
+
+| What you see | What to do |
+|---|---|
+| An install needs an administrator password you don't have | Ask IT to install Git and Node.js (LTS) |
+| `winget` isn't found (Windows) | Install Git from git-scm.com and Node.js from nodejs.org, or ask IT |
+| The npm or GitHub check times out | It's usually your company network. Ask IT for the proxy settings, or use a personal network on the day |
+| There's no Code tab | You need a Pro, Max, Team or Enterprise plan, or your admin needs to turn Claude Code on |
+</details>
 
 ---
 
