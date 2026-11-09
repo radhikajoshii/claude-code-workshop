@@ -1,4 +1,5 @@
 // Builds the workshop guide web page from README.md, so the README stays the one place prompts are edited.
+// Step minutes in the README are left out of the page; they are for the facilitator.
 // Run it with: node site/build.js   (writes site/dist/index.html; Vercel runs this on every deploy)
 // No packages: it understands the Markdown the README uses (headings, paragraphs, lists, tables,
 // code blocks, quotes, GitHub alerts and <details>), nothing more.
@@ -115,7 +116,8 @@ function blocks(lines) {
     const kind = text.startsWith("✅") ? "done" : text.startsWith("💡") ? "why" : text.startsWith("🧪") ? "try"
       : /^`\d+ min`/.test(text) ? "meta" : "";
     html += kind === "meta"
-      ? `<p class="meta">${inline(text).replace(/^<code>(\d+ min)<\/code>\s*·?\s*/, '<span class="mins">$1</span>')}</p>`
+      // The page leaves out each step's minutes (they're for the facilitator) and keeps what the step uses.
+      ? `<p class="meta">${inline(text).replace(/^<code>\d+ min<\/code>\s*·?\s*/, "")}</p>`
       : `<p${kind ? ` class="callout ${kind}"` : ""}>${inline(text)}</p>`;
   }
   return html;
@@ -140,10 +142,7 @@ const eventAt = intro.findIndex((l) => /^\*\*.*\*\*$/.test(l.trim()));
 const eventLine = eventAt >= 0 ? intro.splice(eventAt, 1)[0].trim().replace(/^\*\*|\*\*$/g, "") : "";
 
 const shown = sections.filter((s) => s.title !== "Contents"); // the sidebar replaces the contents list
-const nav = shown.map((s) => {
-  const mins = (s.lines.join("\n").match(/^`(\d+) min`/m) || [])[1];
-  return { id: slug(s.title), title: s.title, mins, step: /^\d+\./.test(s.title) };
-});
+const nav = shown.map((s) => ({ id: slug(s.title), title: s.title, step: /^\d+\./.test(s.title) }));
 
 const body = shown.map((s, n) => {
   const { id, step } = nav[n];
@@ -151,8 +150,7 @@ const body = shown.map((s, n) => {
   return `<section id="${id}" class="${step ? "step" : "extra"}"><div class="section-head"><h2>${inline(s.title)}</h2>${done}</div>${blocks(s.lines)}</section>`;
 }).join("\n");
 
-const navHtml = nav.map((s) => `<li><a href="#${s.id}" data-id="${s.id}"${s.step ? ' class="is-step"' : ""}><span class="nav-title">${inline(s.title)}</span>${
-  s.mins ? `<span class="nav-mins">${s.mins} min</span>` : ""}</a></li>`).join("");
+const navHtml = nav.map((s) => `<li><a href="#${s.id}" data-id="${s.id}"${s.step ? ' class="is-step"' : ""}><span class="nav-title">${inline(s.title)}</span></a></li>`).join("");
 
 // --- The page -----------------------------------------------------------------
 
@@ -191,10 +189,8 @@ aside.nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 
 .nav a { display: flex; justify-content: space-between; gap: 10px; padding: 8px 12px; border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 15px; line-height: 1.35; }
 .nav a:hover { background: var(--soft); }
 .nav a.active { background: var(--navy); color: #fff; }
-.nav a.active .nav-mins { color: #c9d1dc; }
 .nav a.is-done .nav-title::before { content: "✓ "; color: var(--tip); font-weight: 600; }
 .nav a.active.is-done .nav-title::before { color: #9fd3b4; }
-.nav-mins { color: var(--muted); font-size: 13px; white-space: nowrap; padding-top: 1px; }
 .nav li + li.gap { margin-top: 12px; }
 .nav .repo { display: inline-block; margin-top: 24px; font-size: 14px; }
 .nav-toggle { display: none; }
@@ -212,7 +208,6 @@ section > p:first-of-type em, .scenario em { color: var(--muted); }
 p { margin: 14px 0; }
 p.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--muted); font-size: 15px; margin-top: 0; }
 p.meta strong { color: var(--ink); }
-.mins { background: var(--accent); color: #fff; font: 600 13px/1 var(--sans); padding: 6px 10px; border-radius: 999px; }
 .done-toggle { flex: none; font: 500 14px var(--sans); color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; margin-top: 4px; }
 .done-toggle:hover { border-color: var(--muted); color: var(--ink); }
 .done-toggle[aria-pressed="true"] { background: var(--tip-soft); border-color: var(--tip); color: var(--tip); }
