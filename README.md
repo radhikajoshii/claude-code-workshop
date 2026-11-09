@@ -353,4 +353,4 @@ Still stuck? Post in the chat. TenEx helpers are watching it.
 
 You'll create the pipeline, the dashboard, the hook and the skill during the workshop. All companies, people and numbers are fictional.
 
-**Questions after today?** [human@tenex.co](mailto:human@tenex.co) · [www.tenex.co](https://www.tenex.co)
+**Questions after today?** [samantha@tenex.co](mailto:samantha@tenex.co) · [www.tenex.co](https://www.tenex.co)
