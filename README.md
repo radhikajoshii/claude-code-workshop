@@ -1,13 +1,13 @@
-# Build a portfolio pack with Claude Code
+# Build a month-end pack with Claude Code
 
 **OneGuide × TenEx · Unlocking Claude Code for non-technical teams**
 
 Keep this page open next to Claude Code. Every prompt below has a **copy button** in its top-right corner. Click it, paste into Claude Code, and press Enter.
 
-> **The scenario:** You're on the portfolio operations team at Ridgeline Capital. Four portfolio companies have sent their monthly numbers, and every one uses a different format. In the next hour you'll build a pipeline and a dashboard step by step, turn the whole process into one command, then run that command on companies Claude has never seen.
+> **The scenario:** You're on the finance team at Ridgeline Group. Its four business units have sent their monthly numbers, and every one uses a different format. In the next hour you'll build a pipeline and a dashboard step by step, turn the whole process into one command, then run that command on business units Claude has never seen.
 
 > [!IMPORTANT]
-> **Today's rule:** Claude never changes the companies' original files. It fixes problems in the pipeline, not in the source.
+> **Today's rule:** Claude never changes the business units' original files. It fixes problems in the pipeline, not in the source.
 
 > [!TIP]
 > **Fallen behind?** Paste this, using the checkpoint the group is about to start, and Claude will catch you up:
@@ -25,7 +25,7 @@ Keep this page open next to Claude Code. Every prompt below has a **copy button*
 - [4. Build the dashboard](#4-build-the-dashboard) · 12 min
 - [5. Protect the source](#5-protect-the-source) · 4 min
 - [6. Turn it into a skill](#6-turn-it-into-a-skill) · 8 min
-- [7. One command, new companies](#7-one-command-new-companies) · 5 min
+- [7. One command, a new acquisition](#7-one-command-a-new-acquisition) · 5 min
 - [After the session](#after-the-session)
 - [Commands worth knowing](#commands-worth-knowing)
 - [If something goes wrong](#if-something-goes-wrong)
@@ -75,7 +75,7 @@ Please check these, in order:
 
 4. Internet access for the tools:
    - Run `npm view vite version` to check that npm can download packages.
-   - Run `git ls-remote https://github.com/radhikajoshii/claude-code-workshop` to check that I can reach the workshop project.
+   - Run `git ls-remote https://github.com/tenex-labs/claude-code-workshop` to check that I can reach the workshop project.
    If either fails, tell me it's probably a company network or proxy setting.
 
 5. A local web app can run: create a temporary folder, start a tiny Node web server on port 3000, confirm it responds, then stop it and delete the folder.
@@ -107,29 +107,29 @@ Come anyway: you can still follow along on screen. The usual fixes:
 
 `7 min` · **Uses:** Claude running commands for you, CLAUDE.md
 
-*Month-end. The companies' files are in, and the partners want the pack.*
+*Month-end. The business units' files are in, and leadership wants the pack.*
 
 ```
-clone https://github.com/radhikajoshii/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
+clone https://github.com/tenex-labs/claude-code-workshop directly into this folder, not into a subfolder. Then tell me in plain English what's inside.
 ```
 
 <details>
 <summary>The clone failed</summary>
 
-This is usually your company's network. Open [the project on GitHub](https://github.com/radhikajoshii/claude-code-workshop), click the green **Code** button, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
+This is usually your company's network. Open [the project on GitHub](https://github.com/tenex-labs/claude-code-workshop), click the green **Code** button, choose **Download ZIP**, and unzip it. Move the files from the unzipped folder directly into your workshop folder, then paste:
 
 ```
 I downloaded the workshop project into this folder. Tell me in plain English what's inside.
 ```
 </details>
 
-**Then meet CLAUDE.md.** Your team already wrote down how it defines each KPI. Replace `[your role]` with your actual role, for example "VP of Finance at a portfolio company", before you press Enter.
+**Then meet CLAUDE.md.** Your team already wrote down how it defines each KPI. Replace `[your role]` with your actual role, for example "VP of Finance", before you press Enter.
 
 ```
 read CLAUDE.md and explain our KPI definitions in two sentences. Then add a section about me: I'm a [your role].
 ```
 
-✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`, `new-portfolio/`) are directly in your workshop folder, and `CLAUDE.md` has a new section about you.
+✅ **Done looks like:** the project's files (`README.md`, `CLAUDE.md`, `data/`, `acquisition/`) are directly in your workshop folder, and `CLAUDE.md` has a new section about you.
 
 💡 **Why it matters:** Claude ran the commands for you. CLAUDE.md gives every session your team's rules. Try it: start a new session in the same folder and ask `how do we calculate EBITDA here?`
 
@@ -150,7 +150,7 @@ look at every file in data/raw and the budget. Before we combine anything, tell 
 <details>
 <summary>Spoiler: what's planted</summary>
 
-- Every company uses a different layout and different names for the same KPIs.
+- Every business unit uses a different layout and different names for the same KPIs.
 - Copperline reports in thousands of dollars.
 - Harbor & Pine's November file has two EBITDA figures.
 - Tidewater's October total row doesn't match its segments.
@@ -169,7 +169,7 @@ look at every file in data/raw and the budget. Before we combine anything, tell 
 **First, switch to plan mode**, so you approve the plan before anything changes. Then paste:
 
 ```
-plan a script that combines data/raw into one clean table using our KPI definitions, compares it to the budget, flags problems and saves results to output/. Spawn one subagent per company to work out how to clean its file.
+plan a script that combines data/raw into one clean table using our KPI definitions, compares it to the budget, flags problems and saves results to output/. Spawn one subagent per business unit to work out how to clean its file.
 ```
 
 Read the plan. If it looks right, paste:
@@ -180,7 +180,7 @@ looks good. build it, run it and check totals against the sources.
 
 ✅ **Done looks like:** an `output/` folder with the combined results, and Claude tells you what it checked and what it flagged.
 
-💡 **Why it matters:** about one helper per company works in parallel, each dealing with its own company's quirks. Claude decides the split, so three or five helpers is fine. And you approved the plan before anything changed: fixing a plan is cheap, fixing a finished build isn't.
+💡 **Why it matters:** about one helper per business unit works in parallel, each dealing with its own unit's quirks. Claude decides the split, so three or five helpers is fine. And you approved the plan before anything changed: fixing a plan is cheap, fixing a finished build isn't.
 
 ---
 
@@ -188,10 +188,10 @@ looks good. build it, run it and check totals against the sources.
 
 `12 min` · **Uses:** Claude building and running an app
 
-*The partners don't read CSV files. Give them something to look at.*
+*Leadership doesn't read CSV files. Give them something to look at.*
 
 ```
-build a simple local website that shows the results in output/: a portfolio overview for the latest month and a page for each company. Show anything off budget in red. Let me mark each flag as reviewed and add a note, and save the notes to a file so they're still there after the pipeline reruns. Then start it.
+build a simple local website that shows the results in output/: an overview for the latest month and a page for each business unit. Show anything off budget in red. Let me mark each flag as reviewed and add a note, and save the notes to a file so they're still there after the pipeline reruns. Then start it.
 ```
 
 ✅ **Done looks like:** the dashboard is open in your browser at a `localhost` address, and every flag has a way to mark it reviewed.
@@ -217,7 +217,7 @@ the dashboard isn't showing in my browser. find out why and fix it.
 *The pack is built. Now make "never edit the originals" a rule Claude can't skip.*
 
 ```
-add a hook that blocks you from changing or deleting the companies' original files in any raw/ folder. Then explain in one sentence what you set up.
+add a hook that blocks you from changing or deleting the business units' original files in any raw/ folder. Then explain in one sentence what you set up.
 ```
 
 > [!NOTE]
@@ -242,7 +242,7 @@ test the hook: try to fix Harbor & Pine's November file directly in data/raw/ so
 *You did it once by hand. Save the whole process as one command.*
 
 ```
-turn checkpoints 2 to 4 into a skill called build-pack: given a folder of company files, find what's messy, clean and combine them with our KPI definitions, have a subagent check each company against its source, and build the dashboard.
+turn checkpoints 2 to 4 into a skill called build-pack: given a folder of business unit files, find what's messy, clean and combine them with our KPI definitions, have a subagent check each business unit against its source, and build the dashboard.
 ```
 
 > [!NOTE]
@@ -260,22 +260,22 @@ run /build-pack on data/ and compare the result with the dashboard you built.
 
 ---
 
-## 7. One command, new companies
+## 7. One command, a new acquisition
 
 `5 min` · **Uses:** the skill you just built
 
-*A new fund's portfolio just landed. Different companies, different formats.*
+*Ridgeline just acquired a company, and its three business units sent their numbers. Different units, different formats.*
 
 ```
-run /build-pack on new-portfolio/ and open the dashboard it builds.
+run /build-pack on acquisition/ and open the dashboard it builds.
 ```
 
-✅ **Done looks like:** a new dashboard for companies Claude has never seen, in one step.
+✅ **Done looks like:** a new dashboard for business units Claude has never seen, in one step.
 
 💡 **Why it matters:** this is how one person's work becomes the team's process.
 
 <details>
-<summary>Spoiler: what's planted in the new portfolio</summary>
+<summary>Spoiler: what's planted in the acquisition</summary>
 
 - Alder Ridge reports in thousands of dollars, and its November EBITDA is a loss written in brackets: `(36)`.
 - Northgate sends gross sales and returns separately, so net revenue has to be worked out, and it has no gross profit line.
@@ -330,7 +330,7 @@ what's one report I put together every month that would work like this?
 | Claude went off in the wrong direction | Press Stop (or Esc) and tell it what you meant |
 | The hook didn't stop the edit | Paste: `check that the hook in .claude/settings.json runs, and fix it`. CLAUDE.md still tells Claude never to edit the originals, so you can carry on |
 | `/build-pack` isn't recognized | Start a new session in the same folder, then try again. New skills are picked up when a session starts |
-| A number looks off | Paste: `check [company]'s [month] [KPI] against the source file and explain the difference` |
+| A number looks off | Paste: `check [business unit]'s [month] [KPI] against the source file and explain the difference` |
 | Something errored | Paste: `that didn't work. explain what went wrong in plain English and fix it` |
 | The session feels slow or confused | Type `/compact`, or `/clear` and start the step again |
 
@@ -344,13 +344,13 @@ Still stuck? Post in the chat. TenEx helpers are watching it.
 |---|---|
 | `README.md` | This guide |
 | `CLAUDE.md` | Notes for Claude: the scenario, the KPI definitions, the rules, and how to catch you up |
-| `data/raw/` | October and November files from Ridgeline's four fictional portfolio companies, each in its own format |
-| `data/budget-2026.csv` | The monthly budget for each company |
-| `new-portfolio/` | Files, a budget and a company list for three more fictional companies, used in step 7 |
+| `data/raw/` | October and November files from Ridgeline's four fictional business units, each in its own format |
+| `data/budget-2026.csv` | The monthly budget for each business unit |
+| `acquisition/` | Files, a budget and a list of business units for a fictional company Ridgeline just acquired, used in step 7 |
 | `reviews/` | Created by your dashboard: the flags you've marked reviewed, with your notes |
 | `checkpoints/` | Reference copies of the project at each checkpoint, used by "catch me up". You don't need to open these |
 | `site/`, `vercel.json` | Build this guide as a web page. You don't need to open these |
 
-You'll create the pipeline, the dashboard, the hook and the skill during the workshop. All companies, people and numbers are fictional.
+You'll create the pipeline, the dashboard, the hook and the skill during the workshop. All companies, business units, people and numbers are fictional.
 
 **Questions after today?** [samantha@tenex.co](mailto:samantha@tenex.co) · [www.tenex.co](https://www.tenex.co)

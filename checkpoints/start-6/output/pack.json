@@ -1,6 +1,6 @@
 {
   "portfolio": "data",
-  "generated_at": "2026-11-09T19:42:33.176Z",
+  "generated_at": "2026-11-11T01:08:41.989Z",
   "months": [
     "2026-10",
     "2026-11"
@@ -166,7 +166,7 @@
       "company": "bluefield",
       "month": "2026-11",
       "type": "looks wrong",
-      "message": "Headcount jumped from 148 to 1520. Probably a typo; check with the company."
+      "message": "Headcount jumped from 148 to 1520. Probably a typo; check with the business unit."
     },
     {
       "company": "copperline",

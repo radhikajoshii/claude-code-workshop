@@ -1,6 +1,6 @@
 {
-  "portfolio": "new-portfolio",
-  "generated_at": "2026-11-09T19:42:33.316Z",
+  "portfolio": "acquisition",
+  "generated_at": "2026-11-11T01:08:42.583Z",
   "months": [
     "2026-10",
     "2026-11"
@@ -23,7 +23,7 @@
           "ebitda_budget": 260000,
           "revenue_vs_budget": 0.01818181818181818,
           "ebitda_vs_budget": 0.03076923076923077,
-          "source_file": "new-portfolio/raw/2026-10/Alder Ridge Vet - KPI pack Oct 2026.csv"
+          "source_file": "acquisition/raw/2026-10/Alder Ridge Vet - KPI pack Oct 2026.csv"
         },
         "2026-11": {
           "revenue": 2105000,
@@ -37,7 +37,7 @@
           "ebitda_budget": 270000,
           "revenue_vs_budget": -0.06444444444444444,
           "ebitda_vs_budget": -1.1333333333333333,
-          "source_file": "new-portfolio/raw/2026-11/Alder Ridge Vet - KPI pack Nov 2026.csv"
+          "source_file": "acquisition/raw/2026-11/Alder Ridge Vet - KPI pack Nov 2026.csv"
         }
       }
     },
@@ -57,7 +57,7 @@
           "ebitda_budget": 400000,
           "revenue_vs_budget": 0.007142857142857143,
           "ebitda_vs_budget": 0.005,
-          "source_file": "new-portfolio/raw/2026-10/northgate_monthly_2026-10.csv"
+          "source_file": "acquisition/raw/2026-10/northgate_monthly_2026-10.csv"
         },
         "2026-11": {
           "revenue": 4650000,
@@ -71,7 +71,7 @@
           "ebitda_budget": 410000,
           "revenue_vs_budget": -0.07,
           "ebitda_vs_budget": -0.0951219512195122,
-          "source_file": "new-portfolio/raw/2026-11/northgate_monthly_2026-11.csv"
+          "source_file": "acquisition/raw/2026-11/northgate_monthly_2026-11.csv"
         }
       }
     },
@@ -91,7 +91,7 @@
           "ebitda_budget": 300000,
           "revenue_vs_budget": 0.005405405405405406,
           "ebitda_vs_budget": -0.006666666666666667,
-          "source_file": "new-portfolio/raw/2026-10/SummitFitness_Oct.csv"
+          "source_file": "acquisition/raw/2026-10/SummitFitness_Oct.csv"
         },
         "2026-11": {
           "revenue": 1905000,
@@ -105,7 +105,7 @@
           "ebitda_budget": 305000,
           "revenue_vs_budget": 0.013297872340425532,
           "ebitda_vs_budget": 0.019672131147540985,
-          "source_file": "new-portfolio/raw/2026-11/SummitFitness_Nov.csv"
+          "source_file": "acquisition/raw/2026-11/SummitFitness_Nov.csv"
         }
       }
     }
@@ -145,7 +145,7 @@
       "company": "summit-fitness",
       "month": "2026-11",
       "type": "wrong period in file",
-      "message": "The file in the 2026-11 folder says its period is 2026-10. Treated it as 2026-11; check with the company."
+      "message": "The file in the 2026-11 folder says its period is 2026-10. Treated it as 2026-11; check with the business unit."
     }
   ]
 }

@@ -68,5 +68,5 @@ http
     });
   })
   .listen(PORT, "127.0.0.1", () => {
-    console.log(`Portfolio dashboard running at http://localhost:${PORT}`);
+    console.log(`Month-end dashboard running at http://localhost:${PORT}`);
   });
