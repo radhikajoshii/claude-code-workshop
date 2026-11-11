@@ -1,8 +1,8 @@
 {
-  "name": "portfolio-pack",
+  "name": "month-end-pack",
   "version": "1.0.0",
   "private": true,
-  "description": "Turns portfolio companies' monthly exports into one pack and a local dashboard.",
+  "description": "Turns business units' monthly exports into one pack and a local dashboard.",
   "scripts": {
     "pack": "node scripts/pipeline.js",
     "start": "node server.js"

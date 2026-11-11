@@ -1,8 +1,8 @@
-// Builds a portfolio pack from a folder of company files.
-// Run it with: node scripts/pipeline.js            (Ridgeline's companies, in data/)
-//          or: node scripts/pipeline.js new-portfolio
-// The folder needs raw/<YYYY-MM>/ with the company files and budget-2026.csv.
-// It may also have companies.csv (id,company,business); otherwise Ridgeline's four companies are used.
+// Builds a month-end pack from a folder of business unit files.
+// Run it with: node scripts/pipeline.js            (Ridgeline's business units, in data/)
+//          or: node scripts/pipeline.js acquisition
+// The folder needs raw/<YYYY-MM>/ with the business units' files and budget-2026.csv.
+// It may also have companies.csv (id,company,business); otherwise Ridgeline's four business units are used.
 // It never changes the source files. It writes pack.json and consolidated.csv to output/
 // (or output/<folder>/ for any folder other than data/), and lists every pack in output/portfolios.json.
 const fs = require("fs");
@@ -55,7 +55,7 @@ function num(s) {
   return negative ? -n : n;
 }
 
-// --- One reader per company, because every company sends a different format ---
+// --- One reader per business unit, because every unit sends a different format ---
 // Each reader gets the raw text and returns revenue, gross_profit, ebitda, cash and headcount in whole dollars.
 
 const READERS = {
@@ -176,7 +176,7 @@ for (const c of COMPANIES) {
     if (previous && previous.headcount && Math.abs(row.headcount / previous.headcount - 1) > 0.5) {
       looksWrong = true;
       flag(c.id, month, "looks wrong",
-        `Headcount jumped from ${previous.headcount} to ${row.headcount}. Probably a typo; check with the company.`);
+        `Headcount jumped from ${previous.headcount} to ${row.headcount}. Probably a typo; check with the business unit.`);
     }
     entry.months[month] = row;
     if (!looksWrong) previous = row;
@@ -204,7 +204,7 @@ fs.writeFileSync(path.join(OUT, "consolidated.csv"), lines.join("\n") + "\n");
 const indexFile = path.join(ROOT, "output", "portfolios.json");
 const index = fs.existsSync(indexFile) ? JSON.parse(fs.readFileSync(indexFile, "utf8")) : [];
 const packPath = path.relative(ROOT, path.join(OUT, "pack.json")).split(path.sep).join("/");
-const label = FOLDER === "data" ? "Ridgeline Capital" : path.basename(FOLDER).replace(/[-_]/g, " ").replace(/^./, (c) => c.toUpperCase());
+const label = FOLDER === "data" ? "Ridgeline Group" : path.basename(FOLDER).replace(/[-_]/g, " ").replace(/^./, (c) => c.toUpperCase());
 const kept = index.filter((p) => p.path !== packPath);
 kept.push({ id: path.basename(FOLDER), label, path: packPath });
 fs.writeFileSync(indexFile, JSON.stringify(kept, null, 2));
@@ -215,7 +215,7 @@ console.log(`Built the ${label} pack for ${months.join(", ")} (${path.relative(R
 for (const month of months) {
   const rows = pack.companies.map((c) => c.months[month]).filter(Boolean);
   const total = rows.reduce((a, r) => a + r.revenue, 0);
-  console.log(`  ${month}: ${rows.length} of ${COMPANIES.length} companies, portfolio revenue ${fmt(total)}`);
+  console.log(`  ${month}: ${rows.length} of ${COMPANIES.length} business units, total revenue ${fmt(total)}`);
 }
 console.log(`${flags.length} flags:`);
 for (const f of flags) console.log(`  [${f.month}] ${f.company}: ${f.type}. ${f.message}`);

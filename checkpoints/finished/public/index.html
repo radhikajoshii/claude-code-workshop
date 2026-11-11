@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolio pack</title>
+<title>Month-end pack</title>
 <style>
   :root { --bg: #f7f5f0; --card: #fdfcf9; --ink: #16202e; --muted: #4a5568; --line: #ddd7cb; --bad: #a33a1a; --good: #2f6b4f; --bar: #16202e; --budget: #c9c1b2; }
   * { box-sizing: border-box; }
@@ -63,15 +63,15 @@
     const flags = pack.flags.filter((f) => f.month === m);
     const reviewed = flags.filter((f) => notes[flagKey(pack, f)]?.reviewed).length;
     return `
-      <h1>Portfolio pack</h1>
-      <p class="sub">${monthName(m)} · ${have.length} of ${pack.companies.length} companies reported · built ${new Date(pack.generated_at).toLocaleString()}</p>
+      <h1>Month-end pack</h1>
+      <p class="sub">${monthName(m)} · ${have.length} of ${pack.companies.length} business units reported · built ${new Date(pack.generated_at).toLocaleString()}</p>
       <div class="card"><table>
-        <tr><th>Company</th><th>Revenue</th><th>vs budget</th><th>EBITDA</th><th>vs budget</th><th>EBITDA margin</th><th>Cash</th><th>Headcount</th></tr>
+        <tr><th>Business unit</th><th>Revenue</th><th>vs budget</th><th>EBITDA</th><th>vs budget</th><th>EBITDA margin</th><th>Cash</th><th>Headcount</th></tr>
         ${rows}
-        <tr><td><b>Portfolio</b></td><td><b>${$m(total("revenue"))}</b></td><td></td><td><b>${$m(total("ebitda"))}</b></td><td></td>
+        <tr><td><b>Total</b></td><td><b>${$m(total("revenue"))}</b></td><td></td><td><b>${$m(total("ebitda"))}</b></td><td></td>
           <td><b>${total("revenue") ? pct(total("ebitda") / total("revenue")) : "–"}</b></td><td><b>${$m(total("cash"))}</b></td><td><b>${total("headcount")}</b></td></tr>
       </table></div>
-      <p class="legend">Red means more than ${LIMIT * 100}% off budget. Click a company for its months.</p>
+      <p class="legend">Red means more than ${LIMIT * 100}% off budget. Click a business unit for its months.</p>
       <h2>Flags for ${monthName(m)} (${flags.length}${reviewed ? `, ${reviewed} reviewed` : ""})</h2>
       ${flagList(pack, flags)}`;
   }
@@ -137,7 +137,7 @@
         <td>${$(r.ebitda)}</td><td class="${cls(r.ebitda_vs_budget)}">${vs(r.ebitda_vs_budget)}</td><td>${pct(r.ebitda_margin)}</td><td>${$(r.cash)}</td><td>${r.headcount}</td></tr>`;
     }).join("");
     return `
-      <a class="back" href="#">← Portfolio</a>
+      <a class="back" href="#">← Overview</a>
       <h1>${esc(c.name)}</h1>
       <p class="sub">${pack.months.length} months</p>
       <div class="card">${chart(c, pack.months)}</div>
@@ -153,7 +153,7 @@
   // Every pack the pipeline has built is listed in output/portfolios.json. Pick one with ?p=<id>.
   async function portfolios() {
     try { return await (await fetch("/output/portfolios.json")).json(); }
-    catch { return [{ id: "data", label: "Portfolio", path: "output/pack.json" }]; }
+    catch { return [{ id: "data", label: "Month-end pack", path: "output/pack.json" }]; }
   }
 
   async function render() {
@@ -169,7 +169,7 @@
       const c = pack.companies.find((x) => "#" + x.id === location.hash);
       app.innerHTML = tabs + (c ? company(pack, c) : overview(pack));
     } catch {
-      app.innerHTML = `<h1>Portfolio pack</h1><p class="bad">Couldn't load output/pack.json. Run the pipeline first: <code>npm run pack</code></p>`;
+      app.innerHTML = `<h1>Month-end pack</h1><p class="bad">Couldn't load output/pack.json. Run the pipeline first: <code>npm run pack</code></p>`;
     }
   }
   window.addEventListener("hashchange", render);
